@@ -1,0 +1,21 @@
+Metadata-Version: 1.0
+Name: PyCosmoMAD
+Version: 0.0
+Summary: CosmoMad's python extension
+Home-page: http://members.ift.uam-csic.es/dmonge/Software.html
+Author: David Alonso
+Author-email: david.alonso@astro.ox.ac.uk
+License: GPL v3.0
+Description: PyCosmoMAD is a python wrapper for CosmoMAD.
+        
+        Installing:
+          Assuming the CosmoMAD C library has been installed and can
+          be found in the LDPATH, simply type:
+          $ python setup.py install
+        
+        Usage:
+          just import package. All CosmoMAD functions are supported,
+          and they can be called by just omitting the csm_ prefix.
+          See test/test_csm.py for details.
+        
+Platform: UNKNOWN

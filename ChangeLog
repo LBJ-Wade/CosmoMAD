@@ -1,0 +1,125 @@
+2015-12-11  David Alonso  <david.alonso@astro.ox.ac.uk>
+
+	* cosmo_mad.c (csm_growth_factor,csm_f_growth) : Added support
+	for varying DE equation of state.
+
+2014-04-11  David Alonso  <david.alonso@uam.es>
+
+	* cosmo_mad.c (csm_set_Pk_params,csm_Pk_full): Added
+	support for damping terms in Pk to reproduce non-linear redshift
+	distortions and Gaussian photometric redshifts. This implied
+	enabling the code to calculate an arbitrary number of power
+	spectrum multipoles.
+
+2013-12-21  David Alonso  <david.alonso@uam.es>
+
+	* cosmo_mad.c (csm_M2R,csm_R2M,csm_collapsed_fraction): Added
+	support to calculate some mass-function-related stuff. Namely
+	we can calculate the collapsed fraction F(<M) for three different
+	mass function parametrizations.
+
+2013-11-22  David Alonso  <david.alonso@uam.es>
+
+	* cosmo_mad.c (csm_set_linear_pk): Previously the P_k was always
+	normalized to the sigma_8 given as the s8 argument in this
+	function. Now, if s8<=0, the original value of sigma_8 is
+	preserved. Note that this only makes sense for power spectra read
+	from a CAMB file, since BBKS of EH power spectra are not
+	normalized (i.e. we only use the transfer function).
+
+2013-11-20  David Alonso <david.alonso@uam.es>
+	* bessel.c: Implemented faster calculation of the spherical
+	Bessel functions. Negligibly less accurate than GSL, but
+	much faster. Based on the method used by CAMB and CMBFAST
+	- in fact it's almost a direct translation of the Fortran
+	code. The GSL functions are still supported, but their use
+	must be triggered by using the flag -D_USE_GSL_BESSEL when
+	compiling the library (add it to CPPFLAGS).
+
+2013-10-10  David Alonso <david.alonso@uam.es>
+	* libshr/: Support added for shared libraries.
+	* docs/: Doxygen documentation page implemented.
+	
+2013-07-24  David Alonso  <david.alonso@uam.es>
+
+	* cosmo_mad.c (Csm_params): The whole library has been changed
+	by defining the class Csm_params, which contains all the
+	information about a given cosmological model. The first argument
+	of all functions must now be a Csm_params variable. This avoids
+	the use of global variables and allows for the simultaneous
+	calculation of quantities in different cosmological models.
+
+	* cosmo_mad.c (csm_background_set): CosmoMad can now calculate
+	observables in w0-wa cosmological models.
+
+	* cosmo_mad.c (csm_set_Pk_params): Constant linear bias now
+	supported.
+
+	* cosmo_mad.c (csm_Pk_nonlinear): The function csm_Pk_nonlinear_0
+	has been changed to csm_Pk_nonlinear, which returns the non-linear
+	power spectrum scaled with the growth factor given in
+	csm_set_Pk_params, but without any bias or RSDs.
+
+	* cosmo_mad.c (csm_set_xi_multipole_splines): This function now
+	uses a specific set of scales for the splines. See details in the
+	documentation.
+
+	* cosmo_mad.c (csm_unset_xi_multipole_splines): undoes 
+	csm_set_xi_multipole_splines.
+
+	
+2013-02-05  David Alonso  <david.alonso@uam.es>
+
+	* cosmo_mad.c (csm_hubble): new function added returning the
+	inverse Hubble horizon in length units.
+
+	* cosmo_mad.c (csm_set_linear_pk): new option added to calculate
+	the power spectrum using the Eisenstein & Hu transfer function
+	with and without acoustic oscillation.
+
+	* cosmo_mad.c (csm_set_nonlinear_pk): new option added to
+	calculate the non-linear power spectrum using RPT and still
+	recover the small-scale regime by adding the Eisenstein & Hu
+	wiggle-less power spectrum.
+
+	* cosmo_mad.c (csm_Pk_nonlinear_0): a bug has been fixed that gave
+	the wrong large-k behavior.
+
+	* cosmo_mad.c (csm_xi_pi_sigma): new function added to calculate
+	the anisotropic correlation function using longitudinal/transverse
+	coordinates. This can be done either through the previously used
+	multipole expansion or through an exact (but slow) double
+	integral.
+
+2013-01-25  David Alonso  <david.alonso@uam.es>
+
+	* cosmo_mad.c (csm_xi_multipole,csm_xi2p_L): the integrals that
+	define these two functions have been improved. An approximation
+	to the Bessel functions for large arguments (x>100) is used which
+	accelerates the calculation on large scales. No window function
+	at all is needed anymore.
+
+
+2013-01-21  David Alonso  <david.alonso@uam.es>
+
+	* cosmo_mad.c (csm_xi_multipole): in previous versions a top-hat
+	window function of scale 5 Mpc/h was needed for the integral to
+	converge when using HALOFIT's Pk. This has now been improved and
+	the window function is no longer needed on scales r<10 Mpc/h, and
+	a smaller window (R = 1 Mpc/h) is used above that scale to reduce
+	the highly oscillatory nature of the Bessel functions with
+	argument k*r. It has been tested that using this smoothing scale
+	(1 Mpc/h) doesn't change the results at large scales.
+
+
+2013-01-15  David Alonso  <david.alonso@uam.es>
+
+	* cosmo_mad.c (csm_set_nonlinear_Pk): the linear Pk is normalized
+	to the user-defined sigma_8, but the non-linear Pk coming from
+	HALOFIT wasn't in version 0.0. This is now fixed, although, to
+	obtain correct results, the linear and non-linear Pk files must
+	have been obtained from CAMB using the SAME parameters.
+
+2013-01-14  David Alonso  <david.alonso@uam.es>
+
+	* cosmo_mad.c : CosmoMad is born

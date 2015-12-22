@@ -1,0 +1,105 @@
+\form#0:$H(a)$
+\form#1:$a = {\tt aa}$
+\form#2:$h/$
+\form#3:$t(a)$
+\form#4:$a={\tt aa}$
+\form#5:\[ t(a) = \int_0^a \frac{da'}{a'\,H(a')}. \]
+\form#6:$\chi_p(a)$
+\form#7:\[ \chi_p(a) \int_0^a\frac{da'}{a'^2\,H(a')}. \]
+\form#8:$\chi(a)$
+\form#9:$\chi(a)=\chi_p(1)-\chi_p(a)$
+\form#10:$\chi_p$
+\form#11:$r(a)$
+\form#12:\[ r(a) = \frac{1}{H_0\sqrt{|\Omega_k|}}{\rm sinn}\left(H_0\sqrt{|\Omega_k|}\chi(a)\right), \]
+\form#13:$d_A(a)$
+\form#14:$d_A(a) = a\,r(a)$
+\form#15:$d_L(a)$
+\form#16:$d_L(a) = r(a)/a$
+\form#17:$D(a)$
+\form#18:$D(a\ll1)\simeq a$
+\form#19:\[ D(a) = \frac{5}{2}\Omega_M\,H_0^2\,H(a) \int_0^a\frac{da'}{[a'\,H(a')]^3}. \]
+\form#20:$f(a)\equiv d\,\log D(a)/d\,\log a$
+\form#21:$a(t)$
+\form#22:$t={\tt t}$
+\form#23:$a\in[0,1]$
+\form#24:\[ \theta_{\rm BAO}(a) = \frac{r_s}{r(a)}, \]
+\form#25:$r_s$
+\form#26:$\Delta z_{\rm BAO}(a) = H(a)\,r_s$
+\form#27:$\Omega_M={\tt OM}$
+\form#28:$\Omega_{\Lambda}={\tt OL}$
+\form#29:$\Omega_b={\tt OB}$
+\form#30:$w_0={\tt w0}$
+\form#31:$w_a={\tt wa}$
+\form#32:$h={\tt hh}$
+\form#33:$T_{\rm CMB}={\tt T\_CMB}$
+\form#34:$a$
+\form#35:$a=1$
+\form#36:${\tt lkmn} < \log_10(k) < {\tt lkmx}$
+\form#37:$\Delta\log_10(k)={\tt dlk}$
+\form#38:$(k,P(k))$
+\form#39:$k$
+\form#40:$\log_10(k)$
+\form#41:$P(k)$
+\form#42:$\sigma_8={\tt s8}$
+\form#43:\[ \langle\delta({\bf x})\delta({\bf x}+{\bf r})\rangle = \frac{1}{2\pi^2}\int_0^{\infty}P(k)\,\frac{\sin(kr)}{kr}k^2\,dk. \]
+\form#44:\[ P(k,z)=P_L(k,z)\,e^{-k^2\sigma_v^2(z)}, \]
+\form#45:\[ \sigma_v^2(z) = \frac{1}{6\pi^2}\int_0^{\infty}P_L(k,z)\,dk. \]
+\form#46:$P_L(k,z)$
+\form#47:$\sigma_v^2(z=0)$
+\form#48:\[ P(k,z)=\left[P_L(k,z)-P^{\rm no\,BAO}_L(k,z)\right] e^{-k^2\sigma_v^2(z)}+ P^{\rm no\,BAO}_L(k,z), \]
+\form#49:$z=0$
+\form#50:$\sigma_8$
+\form#51:$k={\tt kk}$
+\form#52:${\tt kk}$
+\form#53:$P(k)\propto k^{n_s}$
+\form#54:$P(k)\propto k^{-3}$
+\form#55:$\delta({\bf x},R,T)$
+\form#56:$R$
+\form#57:$T$
+\form#58:\[ \langle\delta({\bf x},{\tt R1},{\tt wf1}) \delta({\bf x}+{\bf r},{\tt R2},{\tt wf2})\rangle. \]
+\form#59:${\tt wf1}$
+\form#60:${\tt wf2}$
+\form#61:\[ W_{\rm TH}(x)=3\,\frac{\sin x - x\,\cos x}{x^3},\hspace{12pt} W_{\rm G}(x)=\exp(-x^2/2). \]
+\form#62:$\beta(a)={\tt beta}$
+\form#63:$D(a)={\tt gf}$
+\form#64:$b={\tt bias}$
+\form#65:$\mu_k={\tt muk}$
+\form#66:\[ P_s(a,k,\mu_k)=b^2(1+\beta(a)\mu_k^2)^2P_{\rm NL}(a,k), \]
+\form#67:$P_{\rm NL}(a,k)$
+\form#68:\[ P_l(k)=\frac{2l+1}{2}\int_{-1}^1L_l(\mu_k)\,P(k,\mu_k), \]
+\form#69:$L_l(x)$
+\form#70:$l$
+\form#71:\[ \xi_l(r)=\frac{i^l}{2\pi^2}\int_0^{\infty}P_l(k)\,j_l(kr), \]
+\form#72:$P_l(k)$
+\form#73:$r$
+\form#74:$0.1 < r\,h/{\rm Mpc} < 15$
+\form#75:$15 < r\,h/{\rm Mpc} < 500$
+\form#76:$r>500\,{\rm Mpc}/h$
+\form#77:$r<0.1\,{\rm Mpc}/h$
+\form#78:$0.1\,{\rm Mpc}/h$
+\form#79:\[ \xi(r,\mu) = \sum_{l=0}^{\infty}\xi_l(r)\,L_l(\mu). \]
+\form#80:$l=0,\,2,\,4$
+\form#81:$\pi=r\,\mu$
+\form#82:$\sigma=r\,\sqrt{1-\mu^2}$
+\form#83:\[ \xi(\pi,\sigma)=\frac{1}{2\pi^2} \int_0^{\infty}dk_{\parallel}\,\cos(k_{\parallel}\pi) \int_0^{\infty}dk_{\perp}\,k_{\perp}\,J_0(k_{\perp}\sigma) P(k_{\parallel},k_{\perp}), \]
+\form#84:$J_0(x)$
+\form#85:$M_{\odot}/h$
+\form#86:\[ F_{\rm PS}(<M)={\rm erfc}(\nu/\sqrt{2}) \]
+\form#87:\[ F_{\rm JAP}(<M)=\frac{\exp(-c\,\nu^2)}{1+a\,\nu^b}, \]
+\form#88:$(a,b,c)=(1.529,0.704,0.412)$
+\form#89:\[ F_{\rm ST}(<M)=A\left[{\rm erfc}\left(\sqrt{\frac{a}{2}}\nu\right) +\frac{\Gamma(1/2-p,a\,\nu^2/2)} {\sqrt{\pi}\,2^p}\right] \]
+\form#90:$(A,a,p)=(0.322,0.707,0.3)$
+\form#91:${\tt l\_max}$
+\form#92:$\Omega_M(a)$
+\form#93:\[ \frac{d}{da}\left(a^3\,H(a)\,\frac{dD}{da}\right)(a)= \frac{3}{2}H(a)\,a\,\Omega_M(a)D. \]
+\form#94:$f(a)$\f simultaneously at $
+\form#95:$. If both quantities are needed at the same time, calling this function once is more efficient than calling #csm_growth_factor and #csm_f_growth separately, since both are simultaneously estimated when solving the evolution equation for matter perturbations */ double csm_growth_factor(Csm_params *par,double aa); /** @brief Scale factor Returns the value of the scale factor $
+\form#96:$ at cosmic time $
+\form#97:$. The first time this function is called, the relation $
+\form#98:$ is calculated for several values of $
+\form#99:$ using #csm_cosmic_time, and a spline is used to invert this relation in all subsequent calls. */ double csm_scale_factor(Csm_params *par,double t); /** @brief Angular BAO scale Returns the angular scale of the BAO (in deg) at $
+\form#100:$ as \f[ \theta_{\rm BAO}(a) = \frac{r_s}{r(a)}, \f] where $
+\form#101:$ is the sound horizon scale estimated through the Eiseinstein \& Hu fitting formula and $
+\form#102:$f(a)$
+\form#103:${\tt gf}$
+\form#104:${\tt fg}$

@@ -1,0 +1,51 @@
+CosmoMad - A C library for cosmology
+====================================
+
+This is CosmoMad, a set of practical mathematical functions written
+in C language that can be used to calculate different useful
+quantities in cosmology.
+
+CosmoMad is free software, you can redistribute it and/or modify it
+under the terms of the GNU General Public License (see COPYING for
+details).
+
+The GNU General Public License does not permit this software to be
+redistributed in proprietary programs.
+
+This library is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+
+Availability
+============
+
+The current stable version of CosmoMad is always available from 
+http://members.ift.uam-csic.es/dmonge/Software.html
+
+
+Installation
+============
+
+CosmoMad follows the standard GNU installation procedure.  Please
+consult the INSTALL file in this distribution for more detailed
+instructions.
+
+
+More information about CosmoMad
+===============================
+
+See the NEWS file for recent changes to the library.
+
+A pdf manual detailing the different functions wrapped in CosmoMad
+is included with the current distribution 
+(see distribution_dir/doc/CosmoMad.pdf)
+
+
+Reporting Bugs
+==============
+
+CosmoMad is work in progress, and therefore bugs may (and probably
+will) occur. If you find a bug or encounter any problem using 
+CosmoMad, please do not hesitate to contact the author:
+  David Alonso - david.alonso@astro.ox.ac.uk.es

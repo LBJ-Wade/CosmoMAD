@@ -1,0 +1,22 @@
+(v1.0)  Fixed computation of growth factor and growth rate for varying
+	dark energy equation of state.
+(v0.10) Arbitrary number of multipoles enabled.
+	Added minimal support for mass function calculations.
+	NEW PYTHON WRAPPER (see python_ext).
+(v0.9) Added some mass-function support
+(v0.8) Slight change to csm_set_linear_pk (see ChangeLog)
+(v0.7) Implemented faster calculation of the spherical Bessel functions.
+(v0.6) Added support for shared libraries and doxygen documentation.
+(v0.5) New functionality added through the Csm_params class. See the
+ChangeLog for more details. w0-wa cosmologies now supported. Constant
+linear bias implemented.
+(v0.4) New functions added. CosmoMad now supports the Eisenstein & Hu
+parametrizations for the power spectrum. A different option for the
+calculation of the anisotropic correlation function has been provided.
+(v0.3) The integral for xi(r) has been further improved. It uses an
+approximation to the Bessel functions for large arguments (x>100) which
+accelerates the calculation of xi for large scales.
+(v0.2) The integral for xi(r) has been improved to yield the exact
+result on small scales.
+(v0.1) A bug regarding the normalization of the nonlinear P_k was fixed
+(see ChangeLog)

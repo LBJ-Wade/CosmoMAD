@@ -1,0 +1,608 @@
+\hypertarget{cosmo__mad_8h}{\section{/home/damonge/\-Science/\-Codes/\-Cosmo\-Mad\-\_\-dev/include/cosmo\-\_\-mad.h File Reference}
+\label{cosmo__mad_8h}\index{/home/damonge/\-Science/\-Codes/\-Cosmo\-Mad\-\_\-dev/include/cosmo\-\_\-mad.\-h@{/home/damonge/\-Science/\-Codes/\-Cosmo\-Mad\-\_\-dev/include/cosmo\-\_\-mad.\-h}}
+}
+
+
+Header file for the Cosmo\-M\-A\-D library.  
+
+
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structCsm__params}{Csm\-\_\-params}
+\begin{DoxyCompactList}\small\item\em Basic parameter structure in Cosmo\-M\-A\-D. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{cosmo__mad_8h_a877702f50c5d3eb196c048136bc7f6c6}{csm\-\_\-unset\-\_\-gsl\-\_\-eh} (void)
+\begin{DoxyCompactList}\small\item\em Unset G\-S\-L error handler. \end{DoxyCompactList}\item 
+void \hyperlink{cosmo__mad_8h_ad111e9fdc2c5cac49a893ea8ca29907b}{csm\-\_\-set\-\_\-verbosity} (int verb)
+\begin{DoxyCompactList}\small\item\em Sets verbosity level. \end{DoxyCompactList}\item 
+void \hyperlink{cosmo__mad_8h_a4a76ae465db24e95dab4f194e33099e8}{csm\-\_\-params\-\_\-free} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par)
+\begin{DoxyCompactList}\small\item\em \hyperlink{structCsm__params}{Csm\-\_\-params} destructor. \end{DoxyCompactList}\item 
+\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$ \hyperlink{cosmo__mad_8h_a179807f5e28a569acdc01954fa938e99}{csm\-\_\-params\-\_\-new} (void)
+\begin{DoxyCompactList}\small\item\em \hyperlink{structCsm__params}{Csm\-\_\-params} creator. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_a0ddff95243d27f923e41314bb3b5e2ea}{csm\-\_\-omega\-\_\-matter} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double aa)
+\begin{DoxyCompactList}\small\item\em Matter parameter. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_a4d9df6c494886ff0d6c5d88da45dc819}{csm\-\_\-hubble} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double aa)
+\begin{DoxyCompactList}\small\item\em Hubble parameter. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_a2738d47618965597b04eedad2783f63d}{csm\-\_\-cosmic\-\_\-time} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double aa)
+\begin{DoxyCompactList}\small\item\em Cosmic time. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_aa2b13f56e953120bb036ccd2af598658}{csm\-\_\-particle\-\_\-horizon} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double aa)
+\begin{DoxyCompactList}\small\item\em Particle horizon. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_a9813b63f27296788aea829bf0e2f6fa3}{csm\-\_\-radial\-\_\-comoving\-\_\-distance} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double aa)
+\begin{DoxyCompactList}\small\item\em Radial comoving distance. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_a84b436b1e2de9e6debc4c8b5dd53a5d4}{csm\-\_\-curvature\-\_\-comoving\-\_\-distance} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double aa)
+\begin{DoxyCompactList}\small\item\em Curvature comoving distance. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_ac74b4d21cd8fae5f59ae390764751659}{csm\-\_\-angular\-\_\-diameter\-\_\-distance} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double aa)
+\begin{DoxyCompactList}\small\item\em Angular diameter distance. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_a6d2c31e8d8e3cdef7c1a068a20e33f8c}{csm\-\_\-luminosity\-\_\-distance} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double aa)
+\begin{DoxyCompactList}\small\item\em Luminosity distance. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_ac6e20b0d65b319bafb360aa023405dd8}{csm\-\_\-growth\-\_\-factor} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double aa)
+\begin{DoxyCompactList}\small\item\em Growth factor. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_a81c2c92df1c25b17dbb2b9620f13753c}{csm\-\_\-f\-\_\-growth} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double aa)
+\begin{DoxyCompactList}\small\item\em Growth rate. \end{DoxyCompactList}\item 
+void \hyperlink{cosmo__mad_8h_a8feabbb289a2680b2acf03a84fe44151}{csm\-\_\-growth\-\_\-factor\-\_\-and\-\_\-growth\-\_\-rate} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double aa, double $\ast$gf, double $\ast$fg)
+\begin{DoxyCompactList}\small\item\em Growth factor A\-N\-D growth rate. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_a1b93166c1d759c48cd0cd593db29f1cf}{csm\-\_\-scale\-\_\-factor} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double t)
+\begin{DoxyCompactList}\small\item\em Scale factor. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_a96e8716ab284bbcaf9ee8a614389b6c5}{csm\-\_\-theta\-\_\-\-B\-A\-O} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double aa)
+\begin{DoxyCompactList}\small\item\em Angular B\-A\-O scale. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_a41bcbac1325f54bd3ba1ab38438433d3}{csm\-\_\-\-Dz\-\_\-\-B\-A\-O} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double aa)
+\begin{DoxyCompactList}\small\item\em Radial B\-A\-O scale. \end{DoxyCompactList}\item 
+void \hyperlink{cosmo__mad_8h_a0a504ce1670dc6d7b58d699afc3a68a9}{csm\-\_\-background\-\_\-set} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double Omega\-M, double Omega\-L, double Omega\-B, double ww, double wwa, double hh, double T\-\_\-\-C\-M\-B)
+\begin{DoxyCompactList}\small\item\em Set background cosmology. \end{DoxyCompactList}\item 
+void \hyperlink{cosmo__mad_8h_abbf1b1d8a175976922c84fd4faae9148}{csm\-\_\-set\-\_\-linear\-\_\-pk} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, char $\ast$fname, double lkmn, double lkmx, double dlk, double nns, double s8)
+\begin{DoxyCompactList}\small\item\em Set linear power spectrum. \end{DoxyCompactList}\item 
+void \hyperlink{cosmo__mad_8h_aaf0bf47316d8edb2f6c3edad18535a21}{csm\-\_\-set\-\_\-nonlinear\-\_\-pk} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, char $\ast$fname\-Pk\-H\-F\-I\-T)
+\begin{DoxyCompactList}\small\item\em Set non-\/linear power spectrum. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_a3ed518d0e8ce3e3801100c2744d5c2e6}{csm\-\_\-\-Pk\-\_\-linear\-\_\-0} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double kk)
+\begin{DoxyCompactList}\small\item\em Linear power spectrum. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_a723db6e8a0644d5f77064e0ea7387ed1}{csm\-\_\-\-Pk\-\_\-nonlinear} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double kk)
+\begin{DoxyCompactList}\small\item\em Non-\/linear power spectrum. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_a7d7852d3442d84b22acf5e78734c074b}{csm\-\_\-xi2p\-\_\-\-L} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double r, double R1, double R2, char $\ast$wf1, char $\ast$wf2, double errfac)
+\begin{DoxyCompactList}\small\item\em Linear correlation function. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_a16d2223a93cd5c3f4d655a83877ce2e0}{csm\-\_\-sig0\-\_\-\-L} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double R1, double R2, char $\ast$wf1, char $\ast$wf2)
+\begin{DoxyCompactList}\small\item\em Linear covariance. \end{DoxyCompactList}\item 
+void \hyperlink{cosmo__mad_8h_a4a45c6515f4482c700f034e6b67697ca}{csm\-\_\-set\-\_\-\-Pk\-\_\-params} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double beta, double gf, double bias, int l\-\_\-max)
+\begin{DoxyCompactList}\small\item\em Set power spectrum params. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_a30d5f402431f3a56dac7385333a778a5}{csm\-\_\-\-Pk\-\_\-full} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double kk, double muk)
+\begin{DoxyCompactList}\small\item\em Full power spectrum. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_acb8160cee1f6556389c4724a7f4c1bb3}{csm\-\_\-\-Pk\-\_\-multipole} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double kk, int l)
+\begin{DoxyCompactList}\small\item\em Power spectrum multipole. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_a5decafc3211f4c8f460caa57290a4aaa}{csm\-\_\-p\-\_\-leg} (int l, double x)
+\begin{DoxyCompactList}\small\item\em Legendre polynomial. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_a8ef0ed2a2f64ec207c760882bc2dafbd}{csm\-\_\-j\-\_\-bessel} (int l, double x)
+\begin{DoxyCompactList}\small\item\em Spherical Bessel function. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_af7d9ec9a1659bc989101988ef260aa58}{csm\-\_\-xi\-\_\-multipole} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double rr, int l)
+\begin{DoxyCompactList}\small\item\em Correlation function multipole. \end{DoxyCompactList}\item 
+void \hyperlink{cosmo__mad_8h_a9e4de8b7bf1baa53f428af2bc826821e}{csm\-\_\-set\-\_\-xi\-\_\-multipole\-\_\-splines} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par)
+\begin{DoxyCompactList}\small\item\em Set multipole splines. \end{DoxyCompactList}\item 
+void \hyperlink{cosmo__mad_8h_af54944a7c21eda63625899c667326c81}{csm\-\_\-unset\-\_\-xi\-\_\-multipole\-\_\-splines} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par)
+\begin{DoxyCompactList}\small\item\em Unset multipole splines. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_a6d2228077c42d6d29087a1e8da0ab2af}{csm\-\_\-xi\-\_\-3\-D} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double rr, double mu)
+\begin{DoxyCompactList}\small\item\em 3\-D correlation function (polar coords) \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_ae84bcecfd1393afa82eb095496a82a6c}{csm\-\_\-xi\-\_\-pi\-\_\-sigma} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double pi, double sigma, int use\-\_\-multipoles)
+\begin{DoxyCompactList}\small\item\em 3\-D correlation function (orthogonal coords) \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_af8ba763a5e609f4de4942fe0a7b6a706}{csm\-\_\-\-M2\-R} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double mass)
+\begin{DoxyCompactList}\small\item\em Radius of a comoving sphere of mass M. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_aa17cc823c5ec6417c0040872e0dbee79}{csm\-\_\-\-R2\-M} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double radius)
+\begin{DoxyCompactList}\small\item\em Mass of a sphere of comoving radius R. \end{DoxyCompactList}\item 
+double \hyperlink{cosmo__mad_8h_a27737adfa62aa3adc65d932e26149ea1}{csm\-\_\-collapsed\-\_\-fraction} (\hyperlink{structCsm__params}{Csm\-\_\-params} $\ast$par, double mass, char $\ast$mf\-\_\-model)
+\begin{DoxyCompactList}\small\item\em Collapsed fraction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Header file for the Cosmo\-M\-A\-D library. \begin{DoxyAuthor}{Author}
+David Alonso 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+13 Oct 2013 This header file contains the definitions of all the available Cosmo\-M\-A\-D functions and macros. 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\hypertarget{cosmo__mad_8h_ac74b4d21cd8fae5f59ae390764751659}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-angular\-\_\-diameter\-\_\-distance@{csm\-\_\-angular\-\_\-diameter\-\_\-distance}}
+\index{csm\-\_\-angular\-\_\-diameter\-\_\-distance@{csm\-\_\-angular\-\_\-diameter\-\_\-distance}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-angular\-\_\-diameter\-\_\-distance}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-angular\-\_\-diameter\-\_\-distance (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{aa}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_ac74b4d21cd8fae5f59ae390764751659}
+
+
+Angular diameter distance. 
+
+Returns the angular diameter distance $d_A(a)$ at $a={\tt aa}$ as $d_A(a) = a\,r(a)$, where $r(a)$ is the curvature comoving distance calculated with \hyperlink{cosmo__mad_8h_a84b436b1e2de9e6debc4c8b5dd53a5d4}{csm\-\_\-curvature\-\_\-comoving\-\_\-distance}. \hypertarget{cosmo__mad_8h_a0a504ce1670dc6d7b58d699afc3a68a9}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-background\-\_\-set@{csm\-\_\-background\-\_\-set}}
+\index{csm\-\_\-background\-\_\-set@{csm\-\_\-background\-\_\-set}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-background\-\_\-set}]{\setlength{\rightskip}{0pt plus 5cm}void csm\-\_\-background\-\_\-set (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{Omega\-M, }
+\item[{double}]{Omega\-L, }
+\item[{double}]{Omega\-B, }
+\item[{double}]{ww, }
+\item[{double}]{wwa, }
+\item[{double}]{hh, }
+\item[{double}]{T\-\_\-\-C\-M\-B}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a0a504ce1670dc6d7b58d699afc3a68a9}
+
+
+Set background cosmology. 
+
+Sets background cosmology for {\ttfamily par\-:} $\Omega_M={\tt OM}$, $\Omega_{\Lambda}={\tt OL}$, $\Omega_b={\tt OB}$, $w_0={\tt w0}$, $w_a={\tt wa}$, $h={\tt hh}$ and $T_{\rm CMB}={\tt T\_CMB}$. This function must be called before calculating any $a$-\/dependent quantity. \hypertarget{cosmo__mad_8h_a27737adfa62aa3adc65d932e26149ea1}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-collapsed\-\_\-fraction@{csm\-\_\-collapsed\-\_\-fraction}}
+\index{csm\-\_\-collapsed\-\_\-fraction@{csm\-\_\-collapsed\-\_\-fraction}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-collapsed\-\_\-fraction}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-collapsed\-\_\-fraction (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{mass, }
+\item[{char $\ast$}]{mf\-\_\-model}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a27737adfa62aa3adc65d932e26149ea1}
+
+
+Collapsed fraction. 
+
+Returns the fraction of the Universe that has collapsed into halos of mass larger than {\ttfamily mass} according to the mass function parametrization given by {\ttfamily mf\-\_\-model}. Three models are supported\-:
+\begin{DoxyItemize}
+\item \char`\"{}\-P\-S\char`\"{} (Press \& Schechter, 1974)\-: \[ F_{\rm PS}(<M)={\rm erfc}(\nu/\sqrt{2}) \]
+\item \char`\"{}\-J\-A\-P\char`\"{} (Peacock, 2007)\-: \[ F_{\rm JAP}(<M)=\frac{\exp(-c\,\nu^2)}{1+a\,\nu^b}, \] with $(a,b,c)=(1.529,0.704,0.412)$.
+\item \char`\"{}\-S\-T\char`\"{} (Sheth \& Tormen, 2002)\-: \[ F_{\rm ST}(<M)=A\left[{\rm erfc}\left(\sqrt{\frac{a}{2}}\nu\right) +\frac{\Gamma(1/2-p,a\,\nu^2/2)} {\sqrt{\pi}\,2^p}\right] \] with $(A,a,p)=(0.322,0.707,0.3)$. 
+\end{DoxyItemize}\hypertarget{cosmo__mad_8h_a2738d47618965597b04eedad2783f63d}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-cosmic\-\_\-time@{csm\-\_\-cosmic\-\_\-time}}
+\index{csm\-\_\-cosmic\-\_\-time@{csm\-\_\-cosmic\-\_\-time}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-cosmic\-\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-cosmic\-\_\-time (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{aa}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a2738d47618965597b04eedad2783f63d}
+
+
+Cosmic time. 
+
+Returns the cosmic time $t(a)$ at $a={\tt aa}$ by calculating the integral \[ t(a) = \int_0^a \frac{da'}{a'\,H(a')}. \] \hypertarget{cosmo__mad_8h_a84b436b1e2de9e6debc4c8b5dd53a5d4}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-curvature\-\_\-comoving\-\_\-distance@{csm\-\_\-curvature\-\_\-comoving\-\_\-distance}}
+\index{csm\-\_\-curvature\-\_\-comoving\-\_\-distance@{csm\-\_\-curvature\-\_\-comoving\-\_\-distance}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-curvature\-\_\-comoving\-\_\-distance}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-curvature\-\_\-comoving\-\_\-distance (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{aa}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a84b436b1e2de9e6debc4c8b5dd53a5d4}
+
+
+Curvature comoving distance. 
+
+Returns the curvature comoving distance $r(a)$ at $a={\tt aa}$ as \[ r(a) = \frac{1}{H_0\sqrt{|\Omega_k|}}{\rm sinn}\left(H_0\sqrt{|\Omega_k|}\chi(a)\right), \] where $\chi(a)$ is the radial comoving distance calculated with \hyperlink{cosmo__mad_8h_a9813b63f27296788aea829bf0e2f6fa3}{csm\-\_\-radial\-\_\-comoving\-\_\-distance}. \hypertarget{cosmo__mad_8h_a41bcbac1325f54bd3ba1ab38438433d3}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-\-Dz\-\_\-\-B\-A\-O@{csm\-\_\-\-Dz\-\_\-\-B\-A\-O}}
+\index{csm\-\_\-\-Dz\-\_\-\-B\-A\-O@{csm\-\_\-\-Dz\-\_\-\-B\-A\-O}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-\-Dz\-\_\-\-B\-A\-O}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-\-Dz\-\_\-\-B\-A\-O (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{aa}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a41bcbac1325f54bd3ba1ab38438433d3}
+
+
+Radial B\-A\-O scale. 
+
+Returns the radial scale of the B\-A\-O as a redshift separation $a = {\tt aa}$ as $\Delta z_{\rm BAO}(a) = H(a)\,r_s$, where $r_s$ is the sound horizon scale estimated through the Eiseinstein \& Hu fitting formula and $H(a)$ is the Hubble paramteter calculated with \hyperlink{cosmo__mad_8h_a4d9df6c494886ff0d6c5d88da45dc819}{csm\-\_\-hubble}. \hypertarget{cosmo__mad_8h_a81c2c92df1c25b17dbb2b9620f13753c}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-f\-\_\-growth@{csm\-\_\-f\-\_\-growth}}
+\index{csm\-\_\-f\-\_\-growth@{csm\-\_\-f\-\_\-growth}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-f\-\_\-growth}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-f\-\_\-growth (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{aa}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a81c2c92df1c25b17dbb2b9620f13753c}
+
+
+Growth rate. 
+
+Returns the linear growth rate $f(a)\equiv d\,\log D(a)/d\,\log a$ at $a={\tt aa}$. \hypertarget{cosmo__mad_8h_ac6e20b0d65b319bafb360aa023405dd8}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-growth\-\_\-factor@{csm\-\_\-growth\-\_\-factor}}
+\index{csm\-\_\-growth\-\_\-factor@{csm\-\_\-growth\-\_\-factor}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-growth\-\_\-factor}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-growth\-\_\-factor (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{aa}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_ac6e20b0d65b319bafb360aa023405dd8}
+
+
+Growth factor. 
+
+Returns the linear growth factor $D(a)$ at $a={\tt aa}$ (normalized to $D(a\ll1)\simeq a$) by solving the equation for matter perturbations\-: \[ \frac{d}{da}\left(a^3\,H(a)\,\frac{dD}{da}\right)(a)= \frac{3}{2}H(a)\,a\,\Omega_M(a)D. \] \hypertarget{cosmo__mad_8h_a8feabbb289a2680b2acf03a84fe44151}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-growth\-\_\-factor\-\_\-and\-\_\-growth\-\_\-rate@{csm\-\_\-growth\-\_\-factor\-\_\-and\-\_\-growth\-\_\-rate}}
+\index{csm\-\_\-growth\-\_\-factor\-\_\-and\-\_\-growth\-\_\-rate@{csm\-\_\-growth\-\_\-factor\-\_\-and\-\_\-growth\-\_\-rate}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-growth\-\_\-factor\-\_\-and\-\_\-growth\-\_\-rate}]{\setlength{\rightskip}{0pt plus 5cm}void csm\-\_\-growth\-\_\-factor\-\_\-and\-\_\-growth\-\_\-rate (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{aa, }
+\item[{double $\ast$}]{gf, }
+\item[{double $\ast$}]{fg}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a8feabbb289a2680b2acf03a84fe44151}
+
+
+Growth factor A\-N\-D growth rate. 
+
+Returns the linear growth factor $D(a)$ and growth rate $f(a)$ simultaneously at $a={\tt aa}$ in the variables ${\tt gf}$ and ${\tt fg}$. If both quantities are needed at the same time, calling this function once is more efficient than calling \hyperlink{cosmo__mad_8h_ac6e20b0d65b319bafb360aa023405dd8}{csm\-\_\-growth\-\_\-factor} and \hyperlink{cosmo__mad_8h_a81c2c92df1c25b17dbb2b9620f13753c}{csm\-\_\-f\-\_\-growth} separately, since both are simultaneously estimated when solving the evolution equation for matter perturbations. \hypertarget{cosmo__mad_8h_a4d9df6c494886ff0d6c5d88da45dc819}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-hubble@{csm\-\_\-hubble}}
+\index{csm\-\_\-hubble@{csm\-\_\-hubble}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-hubble}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-hubble (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{aa}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a4d9df6c494886ff0d6c5d88da45dc819}
+
+
+Hubble parameter. 
+
+Returns the Hubble parameter $H(a)$ at $a = {\tt aa}$ in $h/$Mpc. \hypertarget{cosmo__mad_8h_a8ef0ed2a2f64ec207c760882bc2dafbd}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-j\-\_\-bessel@{csm\-\_\-j\-\_\-bessel}}
+\index{csm\-\_\-j\-\_\-bessel@{csm\-\_\-j\-\_\-bessel}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-j\-\_\-bessel}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-j\-\_\-bessel (
+\begin{DoxyParamCaption}
+\item[{int}]{l, }
+\item[{double}]{x}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a8ef0ed2a2f64ec207c760882bc2dafbd}
+
+
+Spherical Bessel function. 
+
+Returns the spherical Bessel function of order {\ttfamily l} at {\ttfamily x}. \hypertarget{cosmo__mad_8h_a6d2c31e8d8e3cdef7c1a068a20e33f8c}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-luminosity\-\_\-distance@{csm\-\_\-luminosity\-\_\-distance}}
+\index{csm\-\_\-luminosity\-\_\-distance@{csm\-\_\-luminosity\-\_\-distance}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-luminosity\-\_\-distance}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-luminosity\-\_\-distance (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{aa}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a6d2c31e8d8e3cdef7c1a068a20e33f8c}
+
+
+Luminosity distance. 
+
+Returns the luminosity distance $d_L(a)$ at $a={\tt aa}$ as $d_L(a) = r(a)/a$, where $r(a)$ is the curvature comoving distance calculated with \hyperlink{cosmo__mad_8h_a84b436b1e2de9e6debc4c8b5dd53a5d4}{csm\-\_\-curvature\-\_\-comoving\-\_\-distance}. \hypertarget{cosmo__mad_8h_af8ba763a5e609f4de4942fe0a7b6a706}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-\-M2\-R@{csm\-\_\-\-M2\-R}}
+\index{csm\-\_\-\-M2\-R@{csm\-\_\-\-M2\-R}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-\-M2\-R}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-\-M2\-R (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{mass}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_af8ba763a5e609f4de4942fe0a7b6a706}
+
+
+Radius of a comoving sphere of mass M. 
+
+Returns the comoving radius of a sphere of mass M (in $M_{\odot}/h$). \hypertarget{cosmo__mad_8h_a0ddff95243d27f923e41314bb3b5e2ea}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-omega\-\_\-matter@{csm\-\_\-omega\-\_\-matter}}
+\index{csm\-\_\-omega\-\_\-matter@{csm\-\_\-omega\-\_\-matter}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-omega\-\_\-matter}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-omega\-\_\-matter (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{aa}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a0ddff95243d27f923e41314bb3b5e2ea}
+
+
+Matter parameter. 
+
+Returns the matter parameter $\Omega_M(a)$ at $a = {\tt aa}$. \hypertarget{cosmo__mad_8h_a5decafc3211f4c8f460caa57290a4aaa}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-p\-\_\-leg@{csm\-\_\-p\-\_\-leg}}
+\index{csm\-\_\-p\-\_\-leg@{csm\-\_\-p\-\_\-leg}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-p\-\_\-leg}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-p\-\_\-leg (
+\begin{DoxyParamCaption}
+\item[{int}]{l, }
+\item[{double}]{x}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a5decafc3211f4c8f460caa57290a4aaa}
+
+
+Legendre polynomial. 
+
+Returns the Legendre polynomial of order {\ttfamily l} at {\ttfamily x}. \hypertarget{cosmo__mad_8h_a4a76ae465db24e95dab4f194e33099e8}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-params\-\_\-free@{csm\-\_\-params\-\_\-free}}
+\index{csm\-\_\-params\-\_\-free@{csm\-\_\-params\-\_\-free}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-params\-\_\-free}]{\setlength{\rightskip}{0pt plus 5cm}void csm\-\_\-params\-\_\-free (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a4a76ae465db24e95dab4f194e33099e8}
+
+
+\hyperlink{structCsm__params}{Csm\-\_\-params} destructor. 
+
+Frees up all memory associated with {\ttfamily par}. \hypertarget{cosmo__mad_8h_a179807f5e28a569acdc01954fa938e99}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-params\-\_\-new@{csm\-\_\-params\-\_\-new}}
+\index{csm\-\_\-params\-\_\-new@{csm\-\_\-params\-\_\-new}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-params\-\_\-new}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Csm\-\_\-params}$\ast$ csm\-\_\-params\-\_\-new (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a179807f5e28a569acdc01954fa938e99}
+
+
+\hyperlink{structCsm__params}{Csm\-\_\-params} creator. 
+
+Returns an initialized \hyperlink{structCsm__params}{Csm\-\_\-params} structure, without any associated cosmological information (see \hyperlink{cosmo__mad_8h_a0a504ce1670dc6d7b58d699afc3a68a9}{csm\-\_\-background\-\_\-set}). \hypertarget{cosmo__mad_8h_aa2b13f56e953120bb036ccd2af598658}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-particle\-\_\-horizon@{csm\-\_\-particle\-\_\-horizon}}
+\index{csm\-\_\-particle\-\_\-horizon@{csm\-\_\-particle\-\_\-horizon}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-particle\-\_\-horizon}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-particle\-\_\-horizon (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{aa}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_aa2b13f56e953120bb036ccd2af598658}
+
+
+Particle horizon. 
+
+Returns the particle horizon $\chi_p(a)$ at $a={\tt aa}$ by calculating the integral \[ \chi_p(a) \int_0^a\frac{da'}{a'^2\,H(a')}. \] \hypertarget{cosmo__mad_8h_a30d5f402431f3a56dac7385333a778a5}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-\-Pk\-\_\-full@{csm\-\_\-\-Pk\-\_\-full}}
+\index{csm\-\_\-\-Pk\-\_\-full@{csm\-\_\-\-Pk\-\_\-full}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-\-Pk\-\_\-full}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-\-Pk\-\_\-full (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{kk, }
+\item[{double}]{muk}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a30d5f402431f3a56dac7385333a778a5}
+
+
+Full power spectrum. 
+
+Returns the full redshift-\/space power spectrum for $k={\tt kk}$ and $\mu_k={\tt muk}$. The current implementation uses the Kaiser approximation for R\-S\-Ds\-: \[ P_s(a,k,\mu_k)=b^2(1+\beta(a)\mu_k^2)^2P_{\rm NL}(a,k), \] where $P_{\rm NL}(a,k)$ is the non-\/linear power spectrum calculated using \hyperlink{cosmo__mad_8h_a723db6e8a0644d5f77064e0ea7387ed1}{csm\-\_\-\-Pk\-\_\-nonlinear}, which is normalized using the supplied growth factor. \hypertarget{cosmo__mad_8h_a3ed518d0e8ce3e3801100c2744d5c2e6}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-\-Pk\-\_\-linear\-\_\-0@{csm\-\_\-\-Pk\-\_\-linear\-\_\-0}}
+\index{csm\-\_\-\-Pk\-\_\-linear\-\_\-0@{csm\-\_\-\-Pk\-\_\-linear\-\_\-0}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-\-Pk\-\_\-linear\-\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-\-Pk\-\_\-linear\-\_\-0 (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{kk}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a3ed518d0e8ce3e3801100c2744d5c2e6}
+
+
+Linear power spectrum. 
+
+Returns the linear power spectrum at $a=1$ and wave number $k={\tt kk}$. If ${\tt kk}$ lies outside the interpolation limits, $P(k)$ is approximated by $P(k)\propto k^{n_s}$ for small $k$ and by $P(k)\propto k^{-3}$ for large $k$. \hypertarget{cosmo__mad_8h_acb8160cee1f6556389c4724a7f4c1bb3}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-\-Pk\-\_\-multipole@{csm\-\_\-\-Pk\-\_\-multipole}}
+\index{csm\-\_\-\-Pk\-\_\-multipole@{csm\-\_\-\-Pk\-\_\-multipole}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-\-Pk\-\_\-multipole}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-\-Pk\-\_\-multipole (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{kk, }
+\item[{int}]{l}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_acb8160cee1f6556389c4724a7f4c1bb3}
+
+
+Power spectrum multipole. 
+
+Returns the l-\/th power spectrum multipole\-: \[ P_l(k)=\frac{2l+1}{2}\int_{-1}^1L_l(\mu_k)\,P(k,\mu_k), \] where $L_l(x)$ is the Legendre polynomial of order $l$. \hypertarget{cosmo__mad_8h_a723db6e8a0644d5f77064e0ea7387ed1}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-\-Pk\-\_\-nonlinear@{csm\-\_\-\-Pk\-\_\-nonlinear}}
+\index{csm\-\_\-\-Pk\-\_\-nonlinear@{csm\-\_\-\-Pk\-\_\-nonlinear}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-\-Pk\-\_\-nonlinear}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-\-Pk\-\_\-nonlinear (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{kk}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a723db6e8a0644d5f77064e0ea7387ed1}
+
+
+Non-\/linear power spectrum. 
+
+Returns the non-\/linear power spectrum for $k={\tt kk}$. If ${\tt kk}$ lies outside the interpolation limits, $P(k)$ is approximated by $P(k)\propto k^{n_s}$ for small $k$ and by $P(k)\propto k^{-3}$ for large $k$. This function returns the power spectrum normalized with the growth factor supplied by \hyperlink{cosmo__mad_8h_a4a45c6515f4482c700f034e6b67697ca}{csm\-\_\-set\-\_\-\-Pk\-\_\-params}, but without bias or R\-S\-Ds. \hypertarget{cosmo__mad_8h_aa17cc823c5ec6417c0040872e0dbee79}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-\-R2\-M@{csm\-\_\-\-R2\-M}}
+\index{csm\-\_\-\-R2\-M@{csm\-\_\-\-R2\-M}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-\-R2\-M}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-\-R2\-M (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{radius}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_aa17cc823c5ec6417c0040872e0dbee79}
+
+
+Mass of a sphere of comoving radius R. 
+
+Returns the comoving mass (in $M_{\odot}/h$) inside a sphere of comoving radius {\ttfamily radius}. \hypertarget{cosmo__mad_8h_a9813b63f27296788aea829bf0e2f6fa3}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-radial\-\_\-comoving\-\_\-distance@{csm\-\_\-radial\-\_\-comoving\-\_\-distance}}
+\index{csm\-\_\-radial\-\_\-comoving\-\_\-distance@{csm\-\_\-radial\-\_\-comoving\-\_\-distance}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-radial\-\_\-comoving\-\_\-distance}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-radial\-\_\-comoving\-\_\-distance (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{aa}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a9813b63f27296788aea829bf0e2f6fa3}
+
+
+Radial comoving distance. 
+
+Returns the radial comoving distance $\chi(a)$ at $a={\tt aa}$ as $\chi(a)=\chi_p(1)-\chi_p(a)$, where $\chi_p$ is the particle horizon calculated with \hyperlink{cosmo__mad_8h_aa2b13f56e953120bb036ccd2af598658}{csm\-\_\-particle\-\_\-horizon}. \hypertarget{cosmo__mad_8h_a1b93166c1d759c48cd0cd593db29f1cf}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-scale\-\_\-factor@{csm\-\_\-scale\-\_\-factor}}
+\index{csm\-\_\-scale\-\_\-factor@{csm\-\_\-scale\-\_\-factor}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-scale\-\_\-factor}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-scale\-\_\-factor (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{t}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a1b93166c1d759c48cd0cd593db29f1cf}
+
+
+Scale factor. 
+
+Returns the value of the scale factor $a(t)$ at cosmic time $t={\tt t}$. The first time this function is called, the relation $t(a)$ is calculated for several values of $a\in[0,1]$ using \hyperlink{cosmo__mad_8h_a2738d47618965597b04eedad2783f63d}{csm\-\_\-cosmic\-\_\-time}, and a spline is used to invert this relation in all subsequent calls. \hypertarget{cosmo__mad_8h_abbf1b1d8a175976922c84fd4faae9148}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-set\-\_\-linear\-\_\-pk@{csm\-\_\-set\-\_\-linear\-\_\-pk}}
+\index{csm\-\_\-set\-\_\-linear\-\_\-pk@{csm\-\_\-set\-\_\-linear\-\_\-pk}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-set\-\_\-linear\-\_\-pk}]{\setlength{\rightskip}{0pt plus 5cm}void csm\-\_\-set\-\_\-linear\-\_\-pk (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{char $\ast$}]{fname, }
+\item[{double}]{lkmn, }
+\item[{double}]{lkmx, }
+\item[{double}]{dlk, }
+\item[{double}]{nns, }
+\item[{double}]{s8}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_abbf1b1d8a175976922c84fd4faae9148}
+
+
+Set linear power spectrum. 
+
+Initializes the linear power spectrum at $a=1$. This function does different things depending on the value of {\ttfamily fname\-:} 
+
+
+\begin{DoxyItemize}
+\item If {\ttfamily fname} is \char`\"{}\-B\-B\-K\-S\char`\"{}, the power spectrum will be calculated using the B\-B\-K\-S transfer function in the interval ${\tt lkmn} < \log_10(k) < {\tt lkmx}$ in intervals of $\Delta\log_10(k)={\tt dlk}$.
+\item If {\ttfamily fname} is \char`\"{}\-E\-H\char`\"{}, the power spectrum will be calculated using the Eisenstein \& Hu transfer function.
+\item If {\ttfamily fname} is \char`\"{}\-E\-H\-\_\-smooth\char`\"{} the power spectrum will be calculated from the Eisenstein \& Hu transfer function {\bfseries  without acoustic oscillations }.
+\item Finally, {\ttfamily fname} can be set to the path to an A\-S\-C\-I\-I file containing the power spectrum. This file must be in C\-A\-M\-B format, i.\-e.\-: two columns $(k,P(k))$ with $k$ in units of $h/$Mpc and evenly spaced in $\log_10(k)$.
+\end{DoxyItemize}
+
+Once the $P(k)$ is read (or calculated) it is normalized to $\sigma_8={\tt s8}$. If {\ttfamily s8} is a negative number, the normalization of the power spectrum is preserved (note that this only makes sense for power spectra read from a C\-A\-M\-B file, since we only use the B\-B\-K\-S of E\-H transfer functions with the other options). After this is done, a spline is used for fast interpolation. The normalization for $P(k)$ used here is such that \[ \langle\delta({\bf x})\delta({\bf x}+{\bf r})\rangle = \frac{1}{2\pi^2}\int_0^{\infty}P(k)\,\frac{\sin(kr)}{kr}k^2\,dk. \] \hypertarget{cosmo__mad_8h_aaf0bf47316d8edb2f6c3edad18535a21}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-set\-\_\-nonlinear\-\_\-pk@{csm\-\_\-set\-\_\-nonlinear\-\_\-pk}}
+\index{csm\-\_\-set\-\_\-nonlinear\-\_\-pk@{csm\-\_\-set\-\_\-nonlinear\-\_\-pk}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-set\-\_\-nonlinear\-\_\-pk}]{\setlength{\rightskip}{0pt plus 5cm}void csm\-\_\-set\-\_\-nonlinear\-\_\-pk (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{char $\ast$}]{fname\-Pk\-H\-F\-I\-T}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_aaf0bf47316d8edb2f6c3edad18535a21}
+
+
+Set non-\/linear power spectrum. 
+
+Initializes the non-\/linear power spectrum at $a=1$. Three options are available depending on the value of {\ttfamily fname\-Pk\-H\-F\-I\-T} function does different things depending on the value of {\ttfamily fname\-:} 
+
+
+\begin{DoxyItemize}
+\item If {\ttfamily fname} is \char`\"{}\-R\-P\-T\char`\"{}, the mildly non-\/linear power spectrum is approximated by including a Gaussian damping term arising in renormalized perturbation theory\-: \[ P(k,z)=P_L(k,z)\,e^{-k^2\sigma_v^2(z)}, \] where \[ \sigma_v^2(z) = \frac{1}{6\pi^2}\int_0^{\infty}P_L(k,z)\,dk. \] Here $P_L(k,z)$ is the linear power spectrum (see \hyperlink{cosmo__mad_8h_a3ed518d0e8ce3e3801100c2744d5c2e6}{csm\-\_\-\-Pk\-\_\-linear\-\_\-0}). Thus, in this case $\sigma_v^2(z=0)$ is calculated and used as above whenever \hyperlink{cosmo__mad_8h_a723db6e8a0644d5f77064e0ea7387ed1}{csm\-\_\-\-Pk\-\_\-nonlinear}.
+\item If {\ttfamily fname\-Pk\-H\-F\-I\-T} is \char`\"{}\-R\-P\-T\-\_\-ss\char`\"{}, the Gaussian damping factor described above is used only on the oscillatory part of the power spectrum\-: \[ P(k,z)=\left[P_L(k,z)-P^{\rm no\,BAO}_L(k,z)\right] e^{-k^2\sigma_v^2(z)}+ P^{\rm no\,BAO}_L(k,z), \] where the no-\/\-B\-A\-O power spectrum is obtained using the Eisenstein \& Hu fitting formula.
+\item Finally, {\ttfamily fname\-Pk\-H\-F\-I\-T} may be set to the path to a file containing the $z=0$ non-\/linear power spectrum (e.\-g.\-: using H\-A\-L\-O\-F\-I\-T). The format for this file must be the same as the one used in \hyperlink{cosmo__mad_8h_abbf1b1d8a175976922c84fd4faae9148}{csm\-\_\-set\-\_\-linear\-\_\-pk}. Note that in this case there is no way to normalize the power spectrum to the value of $\sigma_8$ used for the linear case. Therefore the user must make sure that the files for both the linear and non-\/linear spectra were generated using the same normalization. 
+\end{DoxyItemize}\hypertarget{cosmo__mad_8h_a4a45c6515f4482c700f034e6b67697ca}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-set\-\_\-\-Pk\-\_\-params@{csm\-\_\-set\-\_\-\-Pk\-\_\-params}}
+\index{csm\-\_\-set\-\_\-\-Pk\-\_\-params@{csm\-\_\-set\-\_\-\-Pk\-\_\-params}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-set\-\_\-\-Pk\-\_\-params}]{\setlength{\rightskip}{0pt plus 5cm}void csm\-\_\-set\-\_\-\-Pk\-\_\-params (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{beta, }
+\item[{double}]{gf, }
+\item[{double}]{bias, }
+\item[{int}]{l\-\_\-max}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a4a45c6515f4482c700f034e6b67697ca}
+
+
+Set power spectrum params. 
+
+Sets the parameters necessary to calculate the full redshift-\/space power spectrum\-: $\beta(a)={\tt beta}$, $D(a)={\tt gf}$ and $b={\tt bias}$ (see \hyperlink{cosmo__mad_8h_a30d5f402431f3a56dac7385333a778a5}{csm\-\_\-\-Pk\-\_\-full}). ${\tt l\_max}$ is the maximum multipole that will be used in the calculation of the power spectrum and 3\-D correlation function (e.\-g. 4 for the Kaiser approximation). \hypertarget{cosmo__mad_8h_ad111e9fdc2c5cac49a893ea8ca29907b}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-set\-\_\-verbosity@{csm\-\_\-set\-\_\-verbosity}}
+\index{csm\-\_\-set\-\_\-verbosity@{csm\-\_\-set\-\_\-verbosity}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-set\-\_\-verbosity}]{\setlength{\rightskip}{0pt plus 5cm}void csm\-\_\-set\-\_\-verbosity (
+\begin{DoxyParamCaption}
+\item[{int}]{verb}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_ad111e9fdc2c5cac49a893ea8ca29907b}
+
+
+Sets verbosity level. 
+
+Determines the amount of information to be output. Only two values for {\ttfamily verb} are supported\-: 0 (nothing) and 1 (everything). The default verbosity level is 1 (all messages are shown). \hypertarget{cosmo__mad_8h_a9e4de8b7bf1baa53f428af2bc826821e}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-set\-\_\-xi\-\_\-multipole\-\_\-splines@{csm\-\_\-set\-\_\-xi\-\_\-multipole\-\_\-splines}}
+\index{csm\-\_\-set\-\_\-xi\-\_\-multipole\-\_\-splines@{csm\-\_\-set\-\_\-xi\-\_\-multipole\-\_\-splines}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-set\-\_\-xi\-\_\-multipole\-\_\-splines}]{\setlength{\rightskip}{0pt plus 5cm}void csm\-\_\-set\-\_\-xi\-\_\-multipole\-\_\-splines (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a9e4de8b7bf1baa53f428af2bc826821e}
+
+
+Set multipole splines. 
+
+If the correlation function must be calculated repeatedly, it may be faster to calculate first the multipole once for a set of values of $r$ and interpolate between these afterwards. This function initializes a set of spline objects that are used thereafter when calling \hyperlink{cosmo__mad_8h_af7d9ec9a1659bc989101988ef260aa58}{csm\-\_\-xi\-\_\-multipole} (directly or indirectly). Specifically, a logarithmic-\/spaced spline is used for $0.1 < r\,h/{\rm Mpc} < 15$, and a linear-\/spaced spline is used for $15 < r\,h/{\rm Mpc} < 500$. Hence subsequent calls to this function will not calculate the integral in \hyperlink{cosmo__mad_8h_af7d9ec9a1659bc989101988ef260aa58}{csm\-\_\-xi\-\_\-multipole}, but will perform a much faster interpolation. If this function is call for $r>500\,{\rm Mpc}/h$, \hyperlink{cosmo__mad_8h_af7d9ec9a1659bc989101988ef260aa58}{csm\-\_\-xi\-\_\-multipole} will return 0 and for $r<0.1\,{\rm Mpc}/h$ it will return the value at $0.1\,{\rm Mpc}/h$. \hypertarget{cosmo__mad_8h_a16d2223a93cd5c3f4d655a83877ce2e0}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-sig0\-\_\-\-L@{csm\-\_\-sig0\-\_\-\-L}}
+\index{csm\-\_\-sig0\-\_\-\-L@{csm\-\_\-sig0\-\_\-\-L}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-sig0\-\_\-\-L}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-sig0\-\_\-\-L (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{R1, }
+\item[{double}]{R2, }
+\item[{char $\ast$}]{wf1, }
+\item[{char $\ast$}]{wf2}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a16d2223a93cd5c3f4d655a83877ce2e0}
+
+
+Linear covariance. 
+
+Returns the covariance of the linear density field smoothed over scales {\ttfamily R1} and {\ttfamily R2} (i.\-e.\-: it is equivalent to calling \hyperlink{cosmo__mad_8h_a7d7852d3442d84b22acf5e78734c074b}{csm\-\_\-xi2p\-\_\-\-L} with r = 0). \hypertarget{cosmo__mad_8h_a96e8716ab284bbcaf9ee8a614389b6c5}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-theta\-\_\-\-B\-A\-O@{csm\-\_\-theta\-\_\-\-B\-A\-O}}
+\index{csm\-\_\-theta\-\_\-\-B\-A\-O@{csm\-\_\-theta\-\_\-\-B\-A\-O}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-theta\-\_\-\-B\-A\-O}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-theta\-\_\-\-B\-A\-O (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{aa}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a96e8716ab284bbcaf9ee8a614389b6c5}
+
+
+Angular B\-A\-O scale. 
+
+Returns the angular scale of the B\-A\-O (in deg) at $a = {\tt aa}$ as \[ \theta_{\rm BAO}(a) = \frac{r_s}{r(a)}, \] where $r_s$ is the sound horizon scale estimated through the Eiseinstein \& Hu fitting formula and $r(a)$ is the curvature comoving distance calculated with \hyperlink{cosmo__mad_8h_a84b436b1e2de9e6debc4c8b5dd53a5d4}{csm\-\_\-curvature\-\_\-comoving\-\_\-distance}. \hypertarget{cosmo__mad_8h_a877702f50c5d3eb196c048136bc7f6c6}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-unset\-\_\-gsl\-\_\-eh@{csm\-\_\-unset\-\_\-gsl\-\_\-eh}}
+\index{csm\-\_\-unset\-\_\-gsl\-\_\-eh@{csm\-\_\-unset\-\_\-gsl\-\_\-eh}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-unset\-\_\-gsl\-\_\-eh}]{\setlength{\rightskip}{0pt plus 5cm}void csm\-\_\-unset\-\_\-gsl\-\_\-eh (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a877702f50c5d3eb196c048136bc7f6c6}
+
+
+Unset G\-S\-L error handler. 
+
+Disables the default G\-S\-L error handler. The user will then be notified if any errors or warnings are found regarding the G\-S\-L functions (e.\-g.\-: some integral was not able to reach the required precision). These warnings will often be unimportant, and the code will not exit. \hypertarget{cosmo__mad_8h_af54944a7c21eda63625899c667326c81}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-unset\-\_\-xi\-\_\-multipole\-\_\-splines@{csm\-\_\-unset\-\_\-xi\-\_\-multipole\-\_\-splines}}
+\index{csm\-\_\-unset\-\_\-xi\-\_\-multipole\-\_\-splines@{csm\-\_\-unset\-\_\-xi\-\_\-multipole\-\_\-splines}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-unset\-\_\-xi\-\_\-multipole\-\_\-splines}]{\setlength{\rightskip}{0pt plus 5cm}void csm\-\_\-unset\-\_\-xi\-\_\-multipole\-\_\-splines (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_af54944a7c21eda63625899c667326c81}
+
+
+Unset multipole splines. 
+
+Undoes all the operations in \hyperlink{cosmo__mad_8h_a9e4de8b7bf1baa53f428af2bc826821e}{csm\-\_\-set\-\_\-xi\-\_\-multipole\-\_\-splines}, freeing up the allocated memory. It is not necessary to call this function unless the splines need to be reinitialized, since it is implicitly called by \hyperlink{cosmo__mad_8h_a4a76ae465db24e95dab4f194e33099e8}{csm\-\_\-params\-\_\-free}. \hypertarget{cosmo__mad_8h_a7d7852d3442d84b22acf5e78734c074b}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-xi2p\-\_\-\-L@{csm\-\_\-xi2p\-\_\-\-L}}
+\index{csm\-\_\-xi2p\-\_\-\-L@{csm\-\_\-xi2p\-\_\-\-L}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-xi2p\-\_\-\-L}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-xi2p\-\_\-\-L (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{r, }
+\item[{double}]{R1, }
+\item[{double}]{R2, }
+\item[{char $\ast$}]{wf1, }
+\item[{char $\ast$}]{wf2, }
+\item[{double}]{errfac}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a7d7852d3442d84b22acf5e78734c074b}
+
+
+Linear correlation function. 
+
+Let $\delta({\bf x},R,T)$ be the density contrast smoothed over a scale $R$ with window function $T$. This function returns the correlation function \[ \langle\delta({\bf x},{\tt R1},{\tt wf1}) \delta({\bf x}+{\bf r},{\tt R2},{\tt wf2})\rangle. \] The possible values for ${\tt wf1}$ and ${\tt wf2}$ are \char`\"{}\-Top\-Hat\char`\"{} and \char`\"{}\-Gauss\char`\"{}\-: \[ W_{\rm TH}(x)=3\,\frac{\sin x - x\,\cos x}{x^3},\hspace{12pt} W_{\rm G}(x)=\exp(-x^2/2). \] For some values of the parameters it may be impossible for the G\-S\-L integrator to obtain the required accuracy, in which case the error tolerance can be scaled by the argument {\ttfamily errfac}. For most cases the default tolerance ({\ttfamily errfac} = 1) is O\-K. \hypertarget{cosmo__mad_8h_a6d2228077c42d6d29087a1e8da0ab2af}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-xi\-\_\-3\-D@{csm\-\_\-xi\-\_\-3\-D}}
+\index{csm\-\_\-xi\-\_\-3\-D@{csm\-\_\-xi\-\_\-3\-D}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-xi\-\_\-3\-D}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-xi\-\_\-3\-D (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{rr, }
+\item[{double}]{mu}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_a6d2228077c42d6d29087a1e8da0ab2af}
+
+
+3\-D correlation function (polar coords) 
+
+Returns the anisotropic 3\-D correlation function as a sum over multipoles \[ \xi(r,\mu) = \sum_{l=0}^{\infty}\xi_l(r)\,L_l(\mu). \] Note that under the Kaiser approximation used by Cosmo\-M\-A\-D in its present version only the first three multipoles ( $l=0,\,2,\,4$) are used. When may calls to this function are necessary it may be wise to call \hyperlink{cosmo__mad_8h_a9e4de8b7bf1baa53f428af2bc826821e}{csm\-\_\-set\-\_\-xi\-\_\-multipole\-\_\-splines} first for a better performance. \hypertarget{cosmo__mad_8h_af7d9ec9a1659bc989101988ef260aa58}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-xi\-\_\-multipole@{csm\-\_\-xi\-\_\-multipole}}
+\index{csm\-\_\-xi\-\_\-multipole@{csm\-\_\-xi\-\_\-multipole}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-xi\-\_\-multipole}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-xi\-\_\-multipole (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{rr, }
+\item[{int}]{l}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_af7d9ec9a1659bc989101988ef260aa58}
+
+
+Correlation function multipole. 
+
+Returns the l-\/th multipole of the redshift-\/space correlation function through the integral \[ \xi_l(r)=\frac{i^l}{2\pi^2}\int_0^{\infty}P_l(k)\,j_l(kr), \] where $P_l(k)$ is the l-\/th power spectrum multipole (as returned by \hyperlink{cosmo__mad_8h_acb8160cee1f6556389c4724a7f4c1bb3}{csm\-\_\-\-Pk\-\_\-multipole}). The first time this function is called a spline is created for each power spectrum multipole in order to accelerate the calculation of the integral above. \hypertarget{cosmo__mad_8h_ae84bcecfd1393afa82eb095496a82a6c}{\index{cosmo\-\_\-mad.\-h@{cosmo\-\_\-mad.\-h}!csm\-\_\-xi\-\_\-pi\-\_\-sigma@{csm\-\_\-xi\-\_\-pi\-\_\-sigma}}
+\index{csm\-\_\-xi\-\_\-pi\-\_\-sigma@{csm\-\_\-xi\-\_\-pi\-\_\-sigma}!cosmo_mad.h@{cosmo\-\_\-mad.\-h}}
+\subsubsection[{csm\-\_\-xi\-\_\-pi\-\_\-sigma}]{\setlength{\rightskip}{0pt plus 5cm}double csm\-\_\-xi\-\_\-pi\-\_\-sigma (
+\begin{DoxyParamCaption}
+\item[{{\bf Csm\-\_\-params} $\ast$}]{par, }
+\item[{double}]{pi, }
+\item[{double}]{sigma, }
+\item[{int}]{use\-\_\-multipoles}
+\end{DoxyParamCaption}
+)}}\label{cosmo__mad_8h_ae84bcecfd1393afa82eb095496a82a6c}
+
+
+3\-D correlation function (orthogonal coords) 
+
+Returns the anisotropic 3\-D correlation function using longitudinal ( $\pi=r\,\mu$) and transverse ( $\sigma=r\,\sqrt{1-\mu^2}$) coordinates. If {\ttfamily use\-\_\-multipoles} is set to 1, the sum over multipoles described ind \hyperlink{cosmo__mad_8h_a6d2228077c42d6d29087a1e8da0ab2af}{csm\-\_\-xi\-\_\-3\-D} is used. If set to 0 the following double integral is performed\-: \[ \xi(\pi,\sigma)=\frac{1}{2\pi^2} \int_0^{\infty}dk_{\parallel}\,\cos(k_{\parallel}\pi) \int_0^{\infty}dk_{\perp}\,k_{\perp}\,J_0(k_{\perp}\sigma) P(k_{\parallel},k_{\perp}), \] where $J_0(x)$ is the 0-\/th order cylindrical Bessel function. Note that the latter approach, although exact, will be much slower than the former, unless a large number of multipoles is needed. 
