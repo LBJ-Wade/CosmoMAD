@@ -1,10 +1,10 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.63])
+AC_PREREQ([2.4])
 AC_INIT([CosmoMad], [1.1], [david.alonso@astro.ox.ac.uk])
 AM_INIT_AUTOMAKE([-Wall])
-AM_PROG_AR
+#AM_PROG_AR
 LT_PREREQ([2.2])
 LT_INIT([dlopen])
 
