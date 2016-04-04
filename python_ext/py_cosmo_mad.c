@@ -2,6 +2,14 @@
 #include <structmember.h>
 #include "cosmo_mad.h"
 
+#ifndef PyVarObject_HEAD_INIT
+#define PyVarObject_HEAD_INIT(type, size) \
+  PyObject_HEAD_INIT(type) size,
+#endif
+#ifndef Py_TYPE
+#define Py_TYPE(ob) (((PyObject*)(ob))->ob_type)
+#endif
+
 typedef struct {
   PyObject_HEAD
   Csm_params *p;
@@ -18,7 +26,19 @@ static int PcsPar_init(PcsPar *self,PyObject *args,PyObject *kwds)
 static void PcsPar_dealloc(PcsPar *self)
 {
   csm_params_free(self->p);
-  self->ob_type->tp_free((PyObject *)self);
+  Py_TYPE(self)->tp_free((PyObject *)self);
+  //  self->ob_type->tp_free((PyObject *)self);
+}
+
+static PyObject *set_verbosity(PcsPar *self,PyObject *args)
+{
+  int flag_verbose;
+  
+  if(!PyArg_ParseTuple(args,"i",&flag_verbose)) return NULL;
+
+  csp_set_verbosity(self->p,flag_verbose);
+
+  Py_RETURN_NONE;
 }
 
 static PyObject *hubble(PcsPar *self,PyObject *args)
@@ -517,8 +537,8 @@ static PyMethodDef PcsParMethods[] = {
 };
 
 static PyTypeObject pcs_PcsParType = {
-  PyObject_HEAD_INIT(NULL)
-  0,                          /*ob_size*/
+  PyVarObject_HEAD_INIT(NULL,0)
+  //  0,                          /*ob_size*/
   "py_cosmo_mad.PcsPar",      /*tp_name*/
   sizeof(PcsPar),             /*tp_basicsize*/
   0,                          /*tp_itemsize*/
@@ -560,24 +580,47 @@ static PyMethodDef PyCsmMethods[] = {
   {NULL}  /* Sentinel */
 };
 
-#ifndef PyMODINIT_FUNC/* declarations for DLL import/export */
-#define PyMODINIT_FUNC void
+#if PY_MAJOR_VERSION >= 3
+static struct PyModuleDef py_cosmo_mad_module = {
+  PyModuleDef_HEAD_INIT,
+  "py_cosmo_mad",   /* name of module */
+  "Cosmology library",
+  -1,
+  PyCsmMethods,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+};
 #endif
+
+//#ifndef PyMODINIT_FUNC/* declarations for DLL import/export */
+//#define PyMODINIT_FUNC void
+//#endif
+#if PY_MAJOR_VERSION >= 3
+PyMODINIT_FUNC PyInit_py_cosmo_mad(void)
+#else
 PyMODINIT_FUNC initpy_cosmo_mad(void)
+#endif
 {
   PyObject *m;
   
   pcs_PcsParType.tp_new=PyType_GenericNew;
   if(PyType_Ready(&pcs_PcsParType)<0)
-    return;
+    return NULL;
 
+#if PY_MAJOR_VERSION >= 3
+  m=PyModule_Create(&py_cosmo_mad_module);
+#else
   m=Py_InitModule3("py_cosmo_mad",PyCsmMethods,"Cosmology library");
-  
+#endif
   if(m==NULL)
-    return;
+    return NULL;
 
   csm_unset_gsl_eh();
   
   Py_INCREF(&pcs_PcsParType);
   PyModule_AddObject(m,"PcsPar",(PyObject *)&pcs_PcsParType);
+
+  return m;
 }

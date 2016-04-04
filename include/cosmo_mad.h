@@ -148,6 +148,7 @@ typedef struct {
  */
 typedef struct {
   /* Background parameters */
+  int flag_verbose;
   int bg_params_set;
   Csm_bg_params *bg;
   int pk_params_set;
@@ -178,7 +179,7 @@ void csm_unset_gsl_eh(void);
  * values for @p verb are supported: 0 (nothing) and 1 (everything).
  * The default verbosity level is 1 (all messages are shown).
  */
-void csm_set_verbosity(int verb);
+void csm_set_verbosity(Csm_params *par,int verb);
 
 /**
  * @brief Csm_params destructor.

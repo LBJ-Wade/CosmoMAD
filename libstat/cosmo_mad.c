@@ -58,9 +58,6 @@
 //Interval in r for linear splines (in Mpc/h)
 #define CSM_DR 1.
 
-/**** Verbosity ****/
-static int csm_flag_verbose=1;
-
 /**** Error handler ****/
 static gsl_error_handler_t *csm_gsl_error_handler_old;
 
@@ -139,11 +136,11 @@ void csm_unset_gsl_eh(void)
   csm_gsl_error_handler_old=gsl_set_error_handler_off();
 }
 
-void csm_set_verbosity(int verb)
+void csm_set_verbosity(Csm_params *par,int verb)
 {
   //////
   // Sets verbosity level
-  csm_flag_verbose=verb;
+  par->flag_verbose=verb;
 }
 
 static void csm_bg_params_free(Csm_bg_params *par)
@@ -313,6 +310,7 @@ Csm_params *csm_params_new(void)
   // csm_params destructor
   Csm_params *par=(Csm_params *)malloc(sizeof(Csm_params));
   if(par==NULL) error_mem_out();
+  par->flag_verbose=0;
   par->bg_params_set=0;
   par->bg=NULL;
   par->pk_params_set=0;
@@ -808,7 +806,7 @@ void csm_background_set(Csm_params *par,
 
   set_EH_params(par->bg);
 
-  if(csm_flag_verbose) {
+  if(par->flag_verbose) {
     printf("The cosmological model is:\n");
     printf(" O_M=%.3f O_L=%.3f O_K=%.3f\n",
 	   par->bg->OM,par->bg->OL,par->bg->OK);
@@ -834,7 +832,7 @@ void csm_background_set(Csm_params *par,
   par->bg->phorizon=csm_particle_horizon(par,1);
   par->bg->bang_time=csm_cosmic_time(par,1);
   par->bg->growth0=csm_growth_factor(par,1);
-  if(csm_flag_verbose) {
+  if(par->flag_verbose) {
     printf("\n Time of equality: a_eq=%.5lf\n",par->bg->a_equality);
     printf(" Particle horizon: ");
     printf("chi_H(0)=%.3lE Mpc/h\n",par->bg->phorizon);
@@ -975,7 +973,7 @@ void csm_set_linear_pk(Csm_params *par,char *fname,
   par->pk->ns=nns;
 
   if(!strcmp(fname,"BBKS")) {
-    if(csm_flag_verbose)
+    if(par->flag_verbose)
       printf("P_k set using the BBKS transfer function\n");
     par->pk->logkcamb=lkmx;
     par->pk->logkmin=lkmn;
@@ -993,7 +991,7 @@ void csm_set_linear_pk(Csm_params *par,char *fname,
     par->pk->karr_set=1;
   }
   else if(!strcmp(fname,"EH")) {
-    if(csm_flag_verbose)
+    if(par->flag_verbose)
       printf("P_k set using the Eisenstein & Hu transfer function\n");
     par->pk->logkcamb=lkmx;
     par->pk->logkmin=lkmn;
@@ -1011,7 +1009,7 @@ void csm_set_linear_pk(Csm_params *par,char *fname,
     par->pk->karr_set=1;
   }
   else if(!strcmp(fname,"EH_smooth")) {
-    if(csm_flag_verbose) {
+    if(par->flag_verbose) {
       printf("P_k set using the smooth Eisenstein & Hu");
       printf(" transfer function\n");
     }
@@ -1032,7 +1030,7 @@ void csm_set_linear_pk(Csm_params *par,char *fname,
   }
   else {
     FILE *fpk;
-    if(csm_flag_verbose)
+    if(par->flag_verbose)
       printf("Reading P_k from file: %s\n",fname);
     fpk=fopen(fname,"r");
     if(fpk==NULL) {
@@ -1070,17 +1068,17 @@ void csm_set_linear_pk(Csm_params *par,char *fname,
     
   // normalize
   double sigma_8_ini=sqrt(csm_sig0_L(par,8,8,"TopHat","TopHat"));
-  if(csm_flag_verbose) {
+  if(par->flag_verbose) {
     printf(" Original sigma8=%lf, ",sigma_8_ini);
   }
   if(s8>0) {
     par->pk->s8=s8;
-    if(csm_flag_verbose) {
+    if(par->flag_verbose) {
       printf("normalized to sigma8=%lf\n\n",s8);
     }
   }
   else {
-    if(csm_flag_verbose) {
+    if(par->flag_verbose) {
       printf("not modified\n\n");
     }
     par->pk->s8=sigma_8_ini;
@@ -1324,7 +1322,7 @@ void csm_set_nonlinear_pk(Csm_params *par,char *fnamePkHFIT)
     double relerrt=1E-4;
     double sigma_v,errsigma_v;
 
-    if(csm_flag_verbose) {
+    if(par->flag_verbose) {
       printf("Setting nonlinear contribution using RPT");
       printf(" gaussian smoothing \n");
     }
@@ -1343,7 +1341,7 @@ void csm_set_nonlinear_pk(Csm_params *par,char *fnamePkHFIT)
 
     par->pk->sigv=sqrt(sigma_v);
 
-    if(csm_flag_verbose)
+    if(par->flag_verbose)
       printf(" sigma_v = %.3lE Mpc/h\n\n",par->pk->sigv);
 
     par->pk->use_RPT=1;
@@ -1359,7 +1357,7 @@ void csm_set_nonlinear_pk(Csm_params *par,char *fnamePkHFIT)
     double relerrt=1E-4;
     double sigma_v,errsigma_v;
     
-    if(csm_flag_verbose) {
+    if(par->flag_verbose) {
       printf("Setting nonlinear contribution using");
       printf(" RPT gaussian smoothing corrected on small scales\n");
     }
@@ -1376,7 +1374,7 @@ void csm_set_nonlinear_pk(Csm_params *par,char *fnamePkHFIT)
     
     gsl_integration_workspace_free(w);
     par->pk->sigv=sqrt(sigma_v);
-    if(csm_flag_verbose)
+    if(par->flag_verbose)
       printf(" sigma_v = %.3lE Mpc/h\n\n",par->pk->sigv);
 
     double *pkarr,*pkarr_lin,norm;
@@ -1447,7 +1445,7 @@ void csm_set_nonlinear_pk(Csm_params *par,char *fnamePkHFIT)
     double *lkarr,*pkarr;
     FILE *fpk;
     
-    if(csm_flag_verbose)
+    if(par->flag_verbose)
       printf("Reading non-linear P_k from file: %s\n",fnamePkHFIT);
     fpk=fopen(fnamePkHFIT,"r");
     if(fpk==NULL) {
@@ -1850,7 +1848,7 @@ double csm_xi_multipole(Csm_params *par,double rr,int l)
       exit(1);
     }
     if(!par->pk->pkmulti_spline_set) {
-      if(csm_flag_verbose)
+      if(par->flag_verbose)
 	printf("Setting Pk multipoles\n");
       set_pk_multipoles(par->pk);
     }
@@ -1936,7 +1934,7 @@ void csm_set_xi_multipole_splines(Csm_params *par)
 
   par->xi=csm_xi_params_new();
 
-  if(csm_flag_verbose)
+  if(par->flag_verbose)
     printf("Setting splines for xi \n\n");
 
   par->xi->intacc_ximulti_lin=(gsl_interp_accel **)
