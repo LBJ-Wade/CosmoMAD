@@ -460,6 +460,8 @@ static PyObject *collapsed_fraction(PcsPar *self,PyObject *args)
 }
 
 static PyMethodDef PcsParMethods[] = {
+  {"set_verbosity",(PyCFunction)set_verbosity,METH_VARARGS,
+   "Control verbosity"},
   {"hubble",(PyCFunction)hubble,METH_VARARGS,
    "Hubble parameter"},
   {"omega_matter",(PyCFunction)omega_matter,METH_VARARGS,
