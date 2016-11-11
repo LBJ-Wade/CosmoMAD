@@ -36,7 +36,7 @@ static PyObject *set_verbosity(PcsPar *self,PyObject *args)
   
   if(!PyArg_ParseTuple(args,"i",&flag_verbose)) return NULL;
 
-  csp_set_verbosity(self->p,flag_verbose);
+  csm_set_verbosity(self->p,flag_verbose);
 
   Py_RETURN_NONE;
 }
@@ -433,6 +433,64 @@ static PyObject *R2M(PcsPar *self,PyObject *args)
   return Py_BuildValue("d",res);
 }
 
+static PyObject *set_mf_params(PcsPar *self,PyObject *args,PyObject *kwds)
+{
+  double lmmn,lmmx,dlm;
+
+  if(!PyArg_ParseTuple(args,"ddd",&lmmn,&lmmx,&dlm)) return NULL;
+  
+  csm_set_mf_params(self->p,lmmn,lmmx,dlm);
+
+  Py_RETURN_NONE;
+}
+
+static PyObject *sigmaM(PcsPar *self,PyObject *args)
+{
+  double res,m;
+
+  if(!PyArg_ParseTuple(args,"d",&m)) return NULL;
+
+  res=csm_sigmaM(self->p,m);
+
+  return Py_BuildValue("d",res);
+}
+
+static PyObject *dlsigMdlM(PcsPar *self,PyObject *args)
+{
+  double res,m;
+
+  if(!PyArg_ParseTuple(args,"d",&m)) return NULL;
+  
+  res=csm_dlsigMdlM(self->p,m);
+
+  return Py_BuildValue("d",res);
+}
+
+static PyObject *multiplicity_function(PcsPar *self,PyObject *args)
+{
+  double res,m,z;
+  char *mftype;
+
+  if(!PyArg_ParseTuple(args,"dds",&m,&z,&mftype)) return NULL;
+  
+  res=csm_multiplicity_function(self->p,m,z,mftype);
+
+  return Py_BuildValue("d",res);
+}
+
+static PyObject *mass_function_logarithmic(PcsPar *self,PyObject *args)
+{
+  double res,m,z;
+  char *mftype;
+
+  if(!PyArg_ParseTuple(args,"dds",&m,&z,&mftype)) return NULL;
+  
+  res=csm_mass_function_logarithmic(self->p,m,z,mftype);
+
+  return Py_BuildValue("d",res);
+}
+
+/*
 static PyObject *cfrac(PcsPar *self,PyObject *args)
 {
   double res;
@@ -445,19 +503,7 @@ static PyObject *cfrac(PcsPar *self,PyObject *args)
 
   return Py_BuildValue("d",res);
 }
-
-static PyObject *collapsed_fraction(PcsPar *self,PyObject *args)
-{
-  double res;
-  double mass;
-  char *mfmodel;
-
-  if(!PyArg_ParseTuple(args,"ds",&mass,&mfmodel)) return NULL;
-  
-  res=csm_collapsed_fraction(self->p,mass,mfmodel);
-
-  return Py_BuildValue("d",res);
-}
+*/
 
 static PyMethodDef PcsParMethods[] = {
   {"set_verbosity",(PyCFunction)set_verbosity,METH_VARARGS,
@@ -531,10 +577,16 @@ static PyMethodDef PcsParMethods[] = {
    "Returns mass for a given Lagrangian radius"},
   {"M2R",(PyCFunction)M2R,METH_VARARGS,
    "Returns Lagrangian radius for a given mass"},
-  {"cfrac",(PyCFunction)cfrac,METH_VARARGS,
-   "Returns the collapsed fraction for universal variable nu"},
-  {"collapsed_fraction",(PyCFunction)collapsed_fraction,METH_VARARGS,
-   "Returns the collapsed fraction as a function of mass"},
+  {"set_mf_params",(PyCFunction)set_mf_params,METH_VARARGS,
+   "Sets mass function parameters"},
+  {"sigmaM",(PyCFunction)sigmaM,METH_VARARGS,
+   "sigma(M)"},
+  {"dlsigMdlM",(PyCFunction)dlsigMdlM,METH_VARARGS,
+   "-d[log(sigma(M))]/d[log(M)]"},
+  {"multiplicity_function",(PyCFunction)multiplicity_function,METH_VARARGS,
+   "-d[F(>M)]/d[log(M)]"},
+  {"mass_function_logarithmic",(PyCFunction)mass_function_logarithmic,METH_VARARGS,
+   "-d[n(M)]/d[log10(M)]"},
   {NULL,NULL,0,NULL}
 };
 
