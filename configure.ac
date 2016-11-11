@@ -3,16 +3,17 @@
 
 AC_PREREQ([2.4])
 AC_INIT([CosmoMad], [1.1], [david.alonso@astro.ox.ac.uk])
-AM_INIT_AUTOMAKE([-Wall])
-#AM_PROG_AR
+AM_INIT_AUTOMAKE([-Wall subdir-objects foreign])
+AM_PROG_AR
 LT_PREREQ([2.2])
 LT_INIT([dlopen])
 
-AC_CONFIG_SRCDIR([libstat/cosmo_mad.c])
+AC_CONFIG_SRCDIR([src/cosmo_mad.c])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
 AC_PROG_CC
+AC_PROG_CC_STDC
 AC_PROG_INSTALL
 AM_PROG_CC_C_O
 
@@ -33,8 +34,6 @@ AC_CHECK_FUNCS([pow sqrt])
 
 AC_CONFIG_FILES([Makefile
 		 include/Makefile
-		 libshr/Makefile
-		 libstat/Makefile
 		 src/Makefile])
 
 AC_OUTPUT

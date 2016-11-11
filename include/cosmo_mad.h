@@ -49,7 +49,41 @@
 #define CSM_DTOR 0.017453292519943295 //pi/180
 #define CSM_HGYR 9.777751486751187 //H0^-1 in Gyrs/h
 #define CSM_HMPC 2997.92458 //H0^-1 in Mpc/h
+
+//Mass function params
 #define CSM_DELTA_C 1.686470199841 //Collapse threshold
+#define CSM_RHOCRIT 2.7744948E11
+#define CSM_ST_A 0.322
+#define CSM_ST_a 0.707
+#define CSM_ST_p 0.3
+#define CSM_JP_a 1.529
+#define CSM_JP_b 0.704
+#define CSM_JP_c 0.412
+#define CSM_JEN_B 0.315
+#define CSM_JEN_b 0.61
+#define CSM_JEN_q 3.8
+#define CSM_WAR_A 0.7234
+#define CSM_WAR_a 1.625
+#define CSM_WAR_b 0.2538
+#define CSM_WAR_c 1.1982
+#define CSM_TINKER_A_500 0.215
+#define CSM_TINKER_Aexp_500 -0.14
+#define CSM_TINKER_a_500 1.585
+#define CSM_TINKER_aexp_500 -0.06
+#define CSM_TINKER_b_500 1.960
+#define CSM_TINKER_bexp_500 -0.128
+#define CSM_TINKER_c_500 1.385
+#define CSM_TINKER_A_200 0.186
+#define CSM_TINKER_Aexp_200 -0.14
+#define CSM_TINKER_a_200 1.47
+#define CSM_TINKER_aexp_200 -0.06
+#define CSM_TINKER_b_200 2.57
+#define CSM_TINKER_bexp_200 -0.01067562865
+#define CSM_TINKER_c_200 1.19
+#define CSM_WATSON_A 0.282
+#define CSM_WATSON_ALPHA 2.163
+#define CSM_WATSON_BETA 1.406
+#define CSM_WATSON_GAMMA 1.210
 
 #define CSM_MIN(a, b)  (((a) < (b)) ? (a) : (b))
 #define CSM_MAX(a, b)  (((a) > (b)) ? (a) : (b))
@@ -140,6 +174,18 @@ typedef struct {
   double *ximultimin;
 } Csm_xi_params;
 
+typedef struct {
+  //Mass arrays
+  double logmmin;
+  double logmmax;
+  int sM_spline_set;
+  gsl_interp_accel *intacc_sM;
+  gsl_spline *spline_sM;
+  int dsM_spline_set;
+  gsl_interp_accel *intacc_dsM;
+  gsl_spline *spline_dsM;
+} Csm_mf_params;
+
 /**
  * @brief Basic parameter structure in CosmoMAD.
  *
@@ -155,6 +201,8 @@ typedef struct {
   Csm_pk_params *pk;
   int xi_spline_set;
   Csm_xi_params *xi;
+  int mf_params_set;
+  Csm_mf_params *mf;
 } Csm_params;
 
 
@@ -666,32 +714,38 @@ double csm_M2R(Csm_params *par,double mass);
 double csm_R2M(Csm_params *par,double radius);
 
 /**
- * @brief Collapsed fraction
+ * @brief Sets arrays for mass-functions calculations
  *
- * Returns the fraction of the Universe that has collapsed
- * into halos of mass larger than @p mass according to the
- * mass function parametrization given by @p mf_model. Three
- * models are supported:
- * - "PS" (Press & Schechter, 1974):
- *   \f[
- *     F_{\rm PS}(<M)={\rm erfc}(\nu/\sqrt{2})
- *   \f]
- * - "JAP" (Peacock, 2007):
- *   \f[
- *     F_{\rm JAP}(<M)=\frac{\exp(-c\,\nu^2)}{1+a\,\nu^b},
- *   \f]
- *   with \f$(a,b,c)=(1.529,0.704,0.412)\f$.
- * - "ST" (Sheth & Tormen, 2002):
- *   \f[
- *     F_{\rm ST}(<M)=A\left[{\rm erfc}\left(\sqrt{\frac{a}{2}}\nu\right)
- *                           +\frac{\Gamma(1/2-p,a\,\nu^2/2)}
- *                                 {\sqrt{\pi}\,2^p}\right]
- *   \f]
- *   with \f$(A,a,p)=(0.322,0.707,0.3)\f$.
+ * Sets up mass arrays for mass-function estimates
  */
-double csm_collapsed_fraction(Csm_params *par,double mass,
-			      char *mf_model);
+void csm_set_mf_params(Csm_params *par,double lmmn,double lmmx,double dlm);
 
-double csm_cfrac(double nu,char *mf_model);
+/**
+ * @brief sigma(M)
+ * 
+ * Returns variance on a top-hat sphere of radius R(M)
+ */
+double csm_sigmaM(Csm_params *par,double m);
+
+/**
+ * @brief d[log(sigma(M))]/d[log(M)]
+ * 
+ * Returns variance on a top-hat sphere of radius R(M)
+ */
+double csm_dlsigMdlM(Csm_params *par,double m);
+
+/**
+ * @brief -dF(>M)/d(log(M))
+ *
+ * Returns multiplicity function
+ */
+double csm_multiplicity_function(Csm_params *par,double mass,double z,char *mftype);
+
+/**
+ * @brief -dn(M)/d(log10(M))
+ *
+ * Returns mass function in logarithmic bins of mass
+ */
+double csm_mass_function_logarithmic(Csm_params *par,double mass,double z,char *mftype);
 
 #endif //_COSMO_MAD_
