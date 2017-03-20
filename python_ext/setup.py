@@ -2,8 +2,6 @@ from distutils.core import setup, Extension
 
 module1=Extension('py_cosmo_mad',
                   libraries=['cosmomad','gsl','gslcblas'],
-                  library_dirs=['/home/damonge/lib'],
-                  include_dirs=['/home/damonge/include'],
                   sources=['py_cosmo_mad.c']);
 
 with open('README.txt') as file:
