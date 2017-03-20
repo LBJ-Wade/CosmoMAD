@@ -8,7 +8,7 @@ AM_PROG_AR
 LT_PREREQ([2.2])
 LT_INIT([dlopen])
 
-AC_CONFIG_SRCDIR([src/cosmo_mad.c])
+AC_CONFIG_SRCDIR([src/csm_background.c])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.

@@ -30,6 +30,13 @@ static void PcsPar_dealloc(PcsPar *self)
   //  self->ob_type->tp_free((PyObject *)self);
 }
 
+static PyObject *unset_gsl_eh(PcsPar *self,PyObject *args)
+{
+  csm_unset_gsl_eh(self->p);
+
+  Py_RETURN_NONE;
+}
+
 static PyObject *set_verbosity(PcsPar *self,PyObject *args)
 {
   int flag_verbose;
@@ -506,6 +513,8 @@ static PyObject *cfrac(PcsPar *self,PyObject *args)
 */
 
 static PyMethodDef PcsParMethods[] = {
+  {"unset_gsl_eh",(PyCFunction)unset_gsl_eh,METH_VARARGS,
+   "Unset GSL error handler"},
   {"set_verbosity",(PyCFunction)set_verbosity,METH_VARARGS,
    "Control verbosity"},
   {"hubble",(PyCFunction)hubble,METH_VARARGS,
@@ -670,8 +679,6 @@ PyMODINIT_FUNC initpy_cosmo_mad(void)
 #endif
   if(m==NULL)
     return NULL;
-
-  csm_unset_gsl_eh();
   
   Py_INCREF(&pcs_PcsParType);
   PyModule_AddObject(m,"PcsPar",(PyObject *)&pcs_PcsParType);

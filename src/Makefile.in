@@ -119,8 +119,9 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libcosmomad_la_LIBADD =
-am_libcosmomad_la_OBJECTS = libcosmomad_la-cosmo_mad.lo \
-	libcosmomad_la-bessel.lo
+am_libcosmomad_la_OBJECTS = libcosmomad_la-csm_utils.lo \
+	libcosmomad_la-csm_background.lo libcosmomad_la-csm_power.lo \
+	libcosmomad_la-csm_mfunc.lo
 libcosmomad_la_OBJECTS = $(am_libcosmomad_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -302,7 +303,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 lib_LTLIBRARIES = libcosmomad.la
-libcosmomad_la_SOURCES = cosmo_mad.c bessel.c
+libcosmomad_la_SOURCES = csm_utils.c csm_background.c csm_power.c csm_mfunc.c
 libcosmomad_la_CPPFLAGS = -I$(top_srcdir)/include/
 all: all-am
 
@@ -383,8 +384,10 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcosmomad_la-bessel.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcosmomad_la-cosmo_mad.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcosmomad_la-csm_background.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcosmomad_la-csm_mfunc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcosmomad_la-csm_power.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcosmomad_la-csm_utils.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -410,19 +413,33 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-libcosmomad_la-cosmo_mad.lo: cosmo_mad.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libcosmomad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libcosmomad_la-cosmo_mad.lo -MD -MP -MF $(DEPDIR)/libcosmomad_la-cosmo_mad.Tpo -c -o libcosmomad_la-cosmo_mad.lo `test -f 'cosmo_mad.c' || echo '$(srcdir)/'`cosmo_mad.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libcosmomad_la-cosmo_mad.Tpo $(DEPDIR)/libcosmomad_la-cosmo_mad.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='cosmo_mad.c' object='libcosmomad_la-cosmo_mad.lo' libtool=yes @AMDEPBACKSLASH@
+libcosmomad_la-csm_utils.lo: csm_utils.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libcosmomad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libcosmomad_la-csm_utils.lo -MD -MP -MF $(DEPDIR)/libcosmomad_la-csm_utils.Tpo -c -o libcosmomad_la-csm_utils.lo `test -f 'csm_utils.c' || echo '$(srcdir)/'`csm_utils.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libcosmomad_la-csm_utils.Tpo $(DEPDIR)/libcosmomad_la-csm_utils.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='csm_utils.c' object='libcosmomad_la-csm_utils.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libcosmomad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libcosmomad_la-cosmo_mad.lo `test -f 'cosmo_mad.c' || echo '$(srcdir)/'`cosmo_mad.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libcosmomad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libcosmomad_la-csm_utils.lo `test -f 'csm_utils.c' || echo '$(srcdir)/'`csm_utils.c
 
-libcosmomad_la-bessel.lo: bessel.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libcosmomad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libcosmomad_la-bessel.lo -MD -MP -MF $(DEPDIR)/libcosmomad_la-bessel.Tpo -c -o libcosmomad_la-bessel.lo `test -f 'bessel.c' || echo '$(srcdir)/'`bessel.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libcosmomad_la-bessel.Tpo $(DEPDIR)/libcosmomad_la-bessel.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='bessel.c' object='libcosmomad_la-bessel.lo' libtool=yes @AMDEPBACKSLASH@
+libcosmomad_la-csm_background.lo: csm_background.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libcosmomad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libcosmomad_la-csm_background.lo -MD -MP -MF $(DEPDIR)/libcosmomad_la-csm_background.Tpo -c -o libcosmomad_la-csm_background.lo `test -f 'csm_background.c' || echo '$(srcdir)/'`csm_background.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libcosmomad_la-csm_background.Tpo $(DEPDIR)/libcosmomad_la-csm_background.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='csm_background.c' object='libcosmomad_la-csm_background.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libcosmomad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libcosmomad_la-bessel.lo `test -f 'bessel.c' || echo '$(srcdir)/'`bessel.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libcosmomad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libcosmomad_la-csm_background.lo `test -f 'csm_background.c' || echo '$(srcdir)/'`csm_background.c
+
+libcosmomad_la-csm_power.lo: csm_power.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libcosmomad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libcosmomad_la-csm_power.lo -MD -MP -MF $(DEPDIR)/libcosmomad_la-csm_power.Tpo -c -o libcosmomad_la-csm_power.lo `test -f 'csm_power.c' || echo '$(srcdir)/'`csm_power.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libcosmomad_la-csm_power.Tpo $(DEPDIR)/libcosmomad_la-csm_power.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='csm_power.c' object='libcosmomad_la-csm_power.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libcosmomad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libcosmomad_la-csm_power.lo `test -f 'csm_power.c' || echo '$(srcdir)/'`csm_power.c
+
+libcosmomad_la-csm_mfunc.lo: csm_mfunc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libcosmomad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libcosmomad_la-csm_mfunc.lo -MD -MP -MF $(DEPDIR)/libcosmomad_la-csm_mfunc.Tpo -c -o libcosmomad_la-csm_mfunc.lo `test -f 'csm_mfunc.c' || echo '$(srcdir)/'`csm_mfunc.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libcosmomad_la-csm_mfunc.Tpo $(DEPDIR)/libcosmomad_la-csm_mfunc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='csm_mfunc.c' object='libcosmomad_la-csm_mfunc.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libcosmomad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libcosmomad_la-csm_mfunc.lo `test -f 'csm_mfunc.c' || echo '$(srcdir)/'`csm_mfunc.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

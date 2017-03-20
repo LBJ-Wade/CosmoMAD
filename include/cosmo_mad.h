@@ -33,6 +33,11 @@
 #ifndef _COSMO_MAD_H
 #define _COSMO_MAD_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
 #include <gsl/gsl_integration.h>
 #include <gsl/gsl_errno.h>
 #include <gsl/gsl_spline.h>
@@ -40,6 +45,34 @@
 #include <gsl/gsl_sf_bessel.h>
 #include <gsl/gsl_sf_gamma.h>
 #include <gsl/gsl_odeiv2.h>
+
+//Number of points for the a(t) relation
+#define CSM_NINTERP_A 1000
+//For x>CSM_SPH_BESSEL_XMAX, j_l(x) ~ cos(x-(l+1)*pi/2)/x
+#define CSM_SPH_BESSEL_XMAX 100.
+//For x>CSM_CYL_BESSEL_XMAX, J_0(x) ~ sqrt(2/(pi*x))*cos(x-pi/4)
+#define CSM_CYL_BESSEL_XMAX 10.
+
+//Scales for splines in Mpc/h
+//Logarithmic splines are used for CSM_RMIN_LOG < r < CSM_RMIN_LIN
+//Linear splines are used for CSM_RMIN_LIN < r < CSM_RMAX_LIN
+#define CSM_RMIN_LOG 0.1
+#define CSM_RMIN_LIN 15.
+#define CSM_RMAX_LIN 500.
+
+//Logarithmic splines exist for
+//  CSM_RMIN_LOG_SPLINE < r < CSM_RMAX_LOG_SPLINE
+//Linear splines exist for
+//  CSM_RMIN_LIN_SPLINE < r < CSM_RMAX_LIN_SPLINE
+#define CSM_RMIN_LOG_SPLINE 0.05
+#define CSM_RMAX_LOG_SPLINE 20.
+#define CSM_RMIN_LIN_SPLINE 10.
+#define CSM_RMAX_LIN_SPLINE 550.
+
+//Interval in log(r) for logarithmic splines
+#define CSM_DLOG 0.01
+//Interval in r for linear splines (in Mpc/h)
+#define CSM_DR 1.
 
 #define CSM_FOURPITHIRD 4.18879020478639 //4*pi/3
 #define CSM_LOGTEN 2.302585092994 //ln(10)
@@ -91,6 +124,8 @@
 #define CSM_CLAMP(x, low, high)  (((x) > (high)) ? (high) : (((x) < (low)) ? (low) : (x)))
 // min(max(x,low),high)
 
+
+//csm_background
 typedef struct {
   double rsound;
   double zeq;
@@ -132,6 +167,8 @@ typedef struct {
   gsl_interp_accel *intacc_at;
   gsl_spline *spline_at;
 } Csm_bg_params;
+void csm_bg_params_free(Csm_bg_params *par);
+Csm_bg_params *csm_bg_params_new(void);
 
 typedef struct {
   //Parameters
@@ -165,6 +202,8 @@ typedef struct {
   gsl_interp_accel **intacc_pkmulti;
   gsl_spline **spline_pkmulti;
 } Csm_pk_params;
+void csm_pk_params_free(Csm_pk_params *par);
+Csm_pk_params *csm_pk_params_new(void);
 
 typedef struct {
   gsl_interp_accel **intacc_ximulti_log;
@@ -173,6 +212,8 @@ typedef struct {
   gsl_spline **spline_ximulti_lin;
   double *ximultimin;
 } Csm_xi_params;
+void csm_xi_params_free(Csm_xi_params *par,int nl);
+Csm_xi_params *csm_xi_params_new(void);
 
 typedef struct {
   //Mass arrays
@@ -185,6 +226,8 @@ typedef struct {
   gsl_interp_accel *intacc_dsM;
   gsl_spline *spline_dsM;
 } Csm_mf_params;
+void csm_mf_params_free(Csm_mf_params *par);
+Csm_mf_params *csm_mf_params_new(void);
 
 /**
  * @brief Basic parameter structure in CosmoMAD.
@@ -203,12 +246,25 @@ typedef struct {
   Csm_xi_params *xi;
   int mf_params_set;
   Csm_mf_params *mf;
+  gsl_error_handler_t *gsl_error_handler_old;
 } Csm_params;
 
 
-/****************************/
-/*   Background cosmology   */
-/****************************/
+/*****************/
+/*   Utilities   */
+/*****************/
+int csm_linecount(FILE *f);
+
+void csm_report_error(int level,char *fmt,...);
+
+void *csm_malloc(size_t size);
+
+void *csm_calloc(size_t nmemb,size_t size);
+
+FILE *csm_fopen(const char *path,const char *mode);
+
+void csm_int_error_handle(int status,double result,double error);
+
 /**
  * @brief Unset GSL error handler
  *
@@ -218,7 +274,7 @@ typedef struct {
  * required precision). These warnings will often be unimportant,
  * and the code will not exit.
  */
-void csm_unset_gsl_eh(void);
+void csm_unset_gsl_eh(Csm_params *par);
 
 /**
  * @brief Sets verbosity level
@@ -244,6 +300,24 @@ void csm_params_free(Csm_params *par);
  */
 Csm_params *csm_params_new(void);
 
+/**
+ * @brief Legendre polynomial
+ *
+ * Returns the Legendre polynomial of order @p l at @p x.
+ */
+double csm_p_leg(int l,double x);
+
+/**
+ * @brief Spherical Bessel function
+ *
+ * Returns the spherical Bessel function of order @p l at @p x.
+ */
+double csm_j_bessel(int l,double x);
+
+
+/****************************/
+/*   Background cosmology   */
+/****************************/
 /**
  * @brief Matter parameter
  *
@@ -327,6 +401,21 @@ double csm_angular_diameter_distance(Csm_params *par,double aa);
 double csm_luminosity_distance(Csm_params *par,double aa);
 
 /**
+ * @brief Growth factor AND growth rate
+ *
+ * Returns the linear growth factor \f$D(a)\f$ and
+ * growth rate \f$f(a)\f$ simultaneously at
+ * \f$a={\tt aa}\f$ in the variables \f${\tt gf}\f$
+ * and \f${\tt fg}\f$. If both quantities are needed
+ * at the same time, calling this function once is
+ * more efficient than calling #csm_growth_factor
+ * and #csm_f_growth separately, since both are simultaneously
+ * estimated when solving the evolution equation 
+ * for matter perturbations. 
+ */
+void csm_growth_factor_and_growth_rate(Csm_params *par,double aa,double *gf,double *fg);
+
+/**
  * @brief Growth factor
  *
  * Returns the linear growth factor \f$D(a)\f$ at
@@ -348,21 +437,6 @@ double csm_growth_factor(Csm_params *par,double aa);
 double csm_f_growth(Csm_params *par,double aa);
 
 /**
- * @brief Growth factor AND growth rate
- *
- * Returns the linear growth factor \f$D(a)\f$ and
- * growth rate \f$f(a)\f$ simultaneously at
- * \f$a={\tt aa}\f$ in the variables \f${\tt gf}\f$
- * and \f${\tt fg}\f$. If both quantities are needed
- * at the same time, calling this function once is
- * more efficient than calling #csm_growth_factor
- * and #csm_f_growth separately, since both are simultaneously
- * estimated when solving the evolution equation 
- * for matter perturbations. 
- */
-void csm_growth_factor_and_growth_rate(Csm_params *par,double aa,double *gf,double *fg);
-
-/**
  * @brief Scale factor
  *
  * Returns the value of the scale factor \f$a(t)\f$
@@ -373,6 +447,19 @@ void csm_growth_factor_and_growth_rate(Csm_params *par,double aa,double *gf,doub
  * calls.
  */
 double csm_scale_factor(Csm_params *par,double t);
+
+/**
+ * @brief Set background cosmology
+ *
+ * Sets background cosmology for @p par: \f$\Omega_M={\tt OM}\f$,
+ * \f$\Omega_{\Lambda}={\tt OL}\f$, \f$\Omega_b={\tt OB}\f$,
+ * \f$w_0={\tt w0}\f$, \f$w_a={\tt wa}\f$, \f$h={\tt hh}\f$
+ * and \f$T_{\rm CMB}={\tt T\_CMB}\f$. This function must be
+ * called before calculating any \f$a\f$-dependent quantity.
+ */
+void csm_background_set(Csm_params *par,
+			double OmegaM,double OmegaL,double OmegaB,
+			double ww,double wwa,double hh,double T_CMB);
 
 /**
  * @brief Angular BAO scale
@@ -400,24 +487,10 @@ double csm_theta_BAO(Csm_params *par,double aa);
  */
 double csm_Dz_BAO(Csm_params *par,double aa);
 
-/**
- * @brief Set background cosmology
- *
- * Sets background cosmology for @p par: \f$\Omega_M={\tt OM}\f$,
- * \f$\Omega_{\Lambda}={\tt OL}\f$, \f$\Omega_b={\tt OB}\f$,
- * \f$w_0={\tt w0}\f$, \f$w_a={\tt wa}\f$, \f$h={\tt hh}\f$
- * and \f$T_{\rm CMB}={\tt T\_CMB}\f$. This function must be
- * called before calculating any \f$a\f$-dependent quantity.
- */
-void csm_background_set(Csm_params *par,
-			double OmegaM,double OmegaL,double OmegaB,
-			double ww,double wwa,double hh,double T_CMB);
-
 
 /****************************/
 /*      Power Spectrum      */
 /****************************/
-
 /**
  * @brief Set linear power spectrum
  *
@@ -458,6 +531,53 @@ void csm_background_set(Csm_params *par,
 void csm_set_linear_pk(Csm_params *par,char *fname,
 		       double lkmn,double lkmx,double dlk,
 		       double nns,double s8);
+
+/**
+ * @brief Linear power spectrum.
+ *
+ * Returns the linear power spectrum at \f$a=1\f$ and wave number
+ * \f$k={\tt kk}\f$. If \f${\tt kk}\f$ lies outside the
+ * interpolation limits, \f$P(k)\f$ is approximated by
+ * \f$P(k)\propto k^{n_s}\f$ for small \f$k\f$ and by \f$P(k)\propto
+ * k^{-3}\f$ for large \f$k\f$.
+ */
+double csm_Pk_linear_0(Csm_params *par,double kk);
+
+/**
+ * @brief Linear correlation function
+ *
+ * Let \f$\delta({\bf x},R,T)\f$ be the density contrast smoothed
+ * over a scale \f$R\f$ with window function \f$T\f$. This function
+ * returns the correlation function
+ * \f[
+ *   \langle\delta({\bf x},{\tt R1},{\tt wf1})
+ *   \delta({\bf x}+{\bf r},{\tt R2},{\tt wf2})\rangle.
+ * \f]
+ * The possible values for \f${\tt wf1}\f$ and \f${\tt wf2}\f$
+ * are "TopHat" and "Gauss":
+ * \f[
+ *   W_{\rm TH}(x)=3\,\frac{\sin x - x\,\cos x}{x^3},\hspace{12pt}
+ *   W_{\rm G}(x)=\exp(-x^2/2).
+ * \f]
+ * For some values of the parameters it may be impossible for the
+ * GSL integrator to obtain the required accuracy, in which case
+ * the error tolerance can be scaled by the argument @p errfac. For
+ * most cases the default tolerance (@p errfac = 1) is OK.
+ */
+double csm_xi2p_L(Csm_params *par,double r,
+		  double R1,double R2,
+		  char *wf1,char *wf2,double errfac);
+
+/**
+ * @brief Linear covariance
+ *
+ * Returns the covariance of the linear density field smoothed
+ * over scales @p R1 and @p R2 (i.e.: it is equivalent to calling
+ * #csm_xi2p_L with r = 0).
+ */
+double csm_sig0_L(Csm_params *par,
+		  double R1,double R2,
+		  char *wf1,char *wf2);
 
 /**
  * @brief Set non-linear power spectrum
@@ -503,15 +623,17 @@ void csm_set_linear_pk(Csm_params *par,char *fname,
 void csm_set_nonlinear_pk(Csm_params *par,char *fnamePkHFIT);
 
 /**
- * @brief Linear power spectrum.
+ * @brief Set power spectrum params
  *
- * Returns the linear power spectrum at \f$a=1\f$ and wave number
- * \f$k={\tt kk}\f$. If \f${\tt kk}\f$ lies outside the
- * interpolation limits, \f$P(k)\f$ is approximated by
- * \f$P(k)\propto k^{n_s}\f$ for small \f$k\f$ and by \f$P(k)\propto
- * k^{-3}\f$ for large \f$k\f$.
+ * Sets the parameters necessary to calculate the full redshift-space
+ * power spectrum: \f$\beta(a)={\tt beta}\f$, \f$D(a)={\tt gf}\f$ and
+ * \f$b={\tt bias}\f$ (see #csm_Pk_full).
+ * \f${\tt l\_max}\f$ is the maximum multipole that will be used in the
+ * calculation of the power spectrum and 3D correlation function (e.g. 4
+ * for the Kaiser approximation).
  */
-double csm_Pk_linear_0(Csm_params *par,double kk);
+void csm_set_Pk_params(Csm_params *par,double beta,
+		       double gf,double bias,int l_max);
 
 /**
  * @brief Non-linear power spectrum
@@ -525,55 +647,6 @@ double csm_Pk_linear_0(Csm_params *par,double kk);
  * bias or RSDs.
  */
 double csm_Pk_nonlinear(Csm_params *par,double kk);
-
-/**
- * @brief Linear correlation function
- *
- * Let \f$\delta({\bf x},R,T)\f$ be the density contrast smoothed
- * over a scale \f$R\f$ with window function \f$T\f$. This function
- * returns the correlation function
- * \f[
- *   \langle\delta({\bf x},{\tt R1},{\tt wf1})
- *   \delta({\bf x}+{\bf r},{\tt R2},{\tt wf2})\rangle.
- * \f]
- * The possible values for \f${\tt wf1}\f$ and \f${\tt wf2}\f$
- * are "TopHat" and "Gauss":
- * \f[
- *   W_{\rm TH}(x)=3\,\frac{\sin x - x\,\cos x}{x^3},\hspace{12pt}
- *   W_{\rm G}(x)=\exp(-x^2/2).
- * \f]
- * For some values of the parameters it may be impossible for the
- * GSL integrator to obtain the required accuracy, in which case
- * the error tolerance can be scaled by the argument @p errfac. For
- * most cases the default tolerance (@p errfac = 1) is OK.
- */
-double csm_xi2p_L(Csm_params *par,double r,
-		  double R1,double R2,
-		  char *wf1,char *wf2,double errfac);
-
-/**
- * @brief Linear covariance
- *
- * Returns the covariance of the linear density field smoothed
- * over scales @p R1 and @p R2 (i.e.: it is equivalent to calling
- * #csm_xi2p_L with r = 0).
- */
-double csm_sig0_L(Csm_params *par,
-		  double R1,double R2,
-		  char *wf1,char *wf2);
-
-/**
- * @brief Set power spectrum params
- *
- * Sets the parameters necessary to calculate the full redshift-space
- * power spectrum: \f$\beta(a)={\tt beta}\f$, \f$D(a)={\tt gf}\f$ and
- * \f$b={\tt bias}\f$ (see #csm_Pk_full).
- * \f${\tt l\_max}\f$ is the maximum multipole that will be used in the
- * calculation of the power spectrum and 3D correlation function (e.g. 4
- * for the Kaiser approximation).
- */
-void csm_set_Pk_params(Csm_params *par,double beta,
-		       double gf,double bias,int l_max);
 
 /**
  * @brief Full power spectrum
@@ -600,20 +673,6 @@ double csm_Pk_full(Csm_params *par,double kk,double muk);
  * where \f$L_l(x)\f$ is the Legendre polynomial of order \f$l\f$.
  */
 double csm_Pk_multipole(Csm_params *par,double kk,int l);
-
-/**
- * @brief Legendre polynomial
- *
- * Returns the Legendre polynomial of order @p l at @p x.
- */
-double csm_p_leg(int l,double x);
-
-/**
- * @brief Spherical Bessel function
- *
- * Returns the spherical Bessel function of order @p l at @p x.
- */
-double csm_j_bessel(int l,double x);
 
 /**
  * @brief Correlation function multipole
@@ -697,6 +756,10 @@ double csm_xi_3D(Csm_params *par,double rr,double mu);
 double csm_xi_pi_sigma(Csm_params *par,double pi,double sigma,
 		       int use_multipoles);
 
+
+/***************************/
+/*      Mass function      */
+/***************************/
 /**
  * @brief Radius of a comoving sphere of mass M
  *
