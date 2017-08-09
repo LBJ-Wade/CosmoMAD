@@ -125,7 +125,52 @@ double csm_dlsigMdlM(Csm_params *par,double m)
   return dsM;
 }
 
-double csm_multiplicity_function(Csm_params *par,double mass,double z,char *mftype)
+double csm_halo_bias(Csm_params *par,double mass,double z,char *mftype)
+{
+  double nu,bM;
+  double gf=csm_growth_factor(par,1./(1+z))/csm_growth_factor(par,1);
+  double sigma=gf*csm_sigmaM(par,mass);
+
+  if(!strcmp(mftype,"PS")) {
+    nu=CSM_DELTA_C/sigma;
+    bM=1+(nu*nu-1)/CSM_DELTA_C;
+  }
+  else if(!strcmp(mftype,"ST")) {
+    double a=0.707;
+    double sqa=sqrt(a);
+    double an2=a*nu*nu;
+    double b=0.5;
+    double c=0.6;
+    bM=1.+(sqa*an2+sqa*b*pow(an2,1-c)-
+	   pow(an2,c)/(pow(an2,c)+b*(1-c)*(1-0.5*c)))/(sqa*CSM_DELTA_C);
+  }
+  else if((!strcmp(mftype,"Tinker10_200")) ||
+	  (!strcmp(mftype,"Tinker10_500"))) {
+    double y,ey,fit_A,fit_a,fit_B,fit_b,fit_C,fit_c;
+    if(!strcmp(mftype,"Tinker10_200"))
+      y=2.3010299956639813; //log10(200)
+    else
+      y=2.6989700043360187; //log10(500)
+    ey=exp(-pow(4./y,4.));
+    fit_A=1.0+0.24*y*ey;
+    fit_a=0.44*y-0.88;
+    fit_B=0.183;
+    fit_b=1.5;
+    fit_C=0.019+0.107*y+0.19*ey;
+    fit_c=2.4;
+    nu=CSM_DELTA_C/sigma;
+    
+    bM=1.-fit_A*pow(nu,fit_a)/(pow(nu,fit_a)+pow(CSM_DELTA_C,fit_a))+
+      fit_B*pow(nu,fit_b)+fit_C*pow(nu,fit_c);
+  }    
+  else
+    csm_report_error(1,"Wrong mass function type %s\n",mftype);
+
+  return bM;
+}
+
+double csm_multiplicity_function(Csm_params *par,double mass,double z,
+				 char *mftype)
 {
   double fM,nu;
   double gf=csm_growth_factor(par,1./(1+z))/csm_growth_factor(par,1);
@@ -165,8 +210,27 @@ double csm_multiplicity_function(Csm_params *par,double mass,double z,char *mfty
     double c=CSM_TINKER_c_500;
     fM=A*(1+pow(b/sigma,a))*exp(-c/(sigma*sigma));
   }
+  else if(!strcmp(mftype,"Tinker10_200")) {
+    double alpha=CSM_TINKER10_ALPHA_200;
+    double beta=CSM_TINKER10_BETA_200*pow(1+z,CSM_TINKER10_BETAexp);
+    double gamma=CSM_TINKER10_GAMMA_200*pow(1+z,CSM_TINKER10_GAMMAexp);
+    double phi=CSM_TINKER10_PHI_200*pow(1+z,CSM_TINKER10_PHIexp);
+    double eta=CSM_TINKER10_ETA_200*pow(1+z,CSM_TINKER10_ETAexp);
+    nu=CSM_DELTA_C/sigma;
+    fM=alpha*(1+pow(beta*nu,-2*phi))*pow(nu,2*eta)*exp(-0.5*gamma*nu*nu);
+  }
+  else if(!strcmp(mftype,"Tinker10_500")) {
+    double alpha=CSM_TINKER10_ALPHA_500;
+    double beta=CSM_TINKER10_BETA_500*pow(1+z,CSM_TINKER10_BETAexp);
+    double gamma=CSM_TINKER10_GAMMA_500*pow(1+z,CSM_TINKER10_GAMMAexp);
+    double phi=CSM_TINKER10_PHI_500*pow(1+z,CSM_TINKER10_PHIexp);
+    double eta=CSM_TINKER10_ETA_500*pow(1+z,CSM_TINKER10_ETAexp);
+    nu=CSM_DELTA_C/sigma;
+    fM=alpha*(1+pow(beta*nu,-2*phi))*pow(nu,2*eta)*exp(-0.5*gamma*nu*nu);
+  }
   else if(!strcmp(mftype,"Watson")) {
-    fM=CSM_WATSON_A*(1+pow(CSM_WATSON_BETA/sigma,CSM_WATSON_ALPHA))*exp(-CSM_WATSON_GAMMA/(sigma*sigma));
+    fM=CSM_WATSON_A*(1+pow(CSM_WATSON_BETA/sigma,CSM_WATSON_ALPHA))*
+      exp(-CSM_WATSON_GAMMA/(sigma*sigma));
   }
   else
     csm_report_error(1,"Wrong mass function type %s\n",mftype);

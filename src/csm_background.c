@@ -383,7 +383,7 @@ void csm_growth_factor_and_growth_rate(Csm_params *par,double aa,double *gf,doub
     *gf=y[0];
     *fg=y[1]/(aa*aa*h_normalized(par,aa)*y[0]);
   }
-}      
+}
 
 double csm_growth_factor(Csm_params *par,double aa)
 {

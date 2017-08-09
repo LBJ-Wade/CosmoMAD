@@ -105,7 +105,7 @@
 #define CSM_TINKER_aexp_500 -0.06
 #define CSM_TINKER_b_500 1.960
 #define CSM_TINKER_bexp_500 -0.128
-#define CSM_TINKER_c_500 1.385
+#define CSM_TINKER_c_500 1.395
 #define CSM_TINKER_A_200 0.186
 #define CSM_TINKER_Aexp_200 -0.14
 #define CSM_TINKER_a_200 1.47
@@ -113,6 +113,20 @@
 #define CSM_TINKER_b_200 2.57
 #define CSM_TINKER_bexp_200 -0.01067562865
 #define CSM_TINKER_c_200 1.19
+#define CSM_TINKER10_ALPHA_200 0.368
+#define CSM_TINKER10_BETA_200 0.589
+#define CSM_TINKER10_GAMMA_200 0.864
+#define CSM_TINKER10_PHI_200 -0.729
+#define CSM_TINKER10_ETA_200 -0.243
+#define CSM_TINKER10_ALPHA_500 0.387
+#define CSM_TINKER10_BETA_500 0.5435
+#define CSM_TINKER10_GAMMA_500 0.998
+#define CSM_TINKER10_PHI_500 -0.98
+#define CSM_TINKER10_ETA_500 -0.267
+#define CSM_TINKER10_BETAexp 0.2
+#define CSM_TINKER10_GAMMAexp -0.01
+#define CSM_TINKER10_PHIexp -0.08
+#define CSM_TINKER10_ETAexp 0.27
 #define CSM_WATSON_A 0.282
 #define CSM_WATSON_ALPHA 2.163
 #define CSM_WATSON_BETA 1.406
@@ -803,6 +817,13 @@ double csm_dlsigMdlM(Csm_params *par,double m);
  * Returns multiplicity function
  */
 double csm_multiplicity_function(Csm_params *par,double mass,double z,char *mftype);
+
+/**
+ * @brief b(M,z)
+ *
+ * Halo bias
+ */
+double csm_halo_bias(Csm_params *par,double mass,double z,char *mftype);
 
 /**
  * @brief -dn(M)/d(log10(M))

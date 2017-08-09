@@ -485,13 +485,25 @@ static PyObject *multiplicity_function(PcsPar *self,PyObject *args)
   return Py_BuildValue("d",res);
 }
 
-static PyObject *mass_function_logarithmic(PcsPar *self,PyObject *args)
+static PyObject *halo_bias(PcsPar *self,PyObject *args)
 {
   double res,m,z;
   char *mftype;
 
   if(!PyArg_ParseTuple(args,"dds",&m,&z,&mftype)) return NULL;
   
+  res=csm_halo_bias(self->p,m,z,mftype);
+
+  return Py_BuildValue("d",res);
+}
+
+static PyObject *mass_function_logarithmic(PcsPar *self,PyObject *args)
+{
+  double res,m,z;
+  char *mftype;
+
+  if(!PyArg_ParseTuple(args,"dds",&m,&z,&mftype)) return NULL;
+
   res=csm_mass_function_logarithmic(self->p,m,z,mftype);
 
   return Py_BuildValue("d",res);
@@ -594,6 +606,8 @@ static PyMethodDef PcsParMethods[] = {
    "-d[log(sigma(M))]/d[log(M)]"},
   {"multiplicity_function",(PyCFunction)multiplicity_function,METH_VARARGS,
    "-d[F(>M)]/d[log(M)]"},
+  {"halo_bias",(PyCFunction)halo_bias,METH_VARARGS,
+   "b(M,z)"},
   {"mass_function_logarithmic",(PyCFunction)mass_function_logarithmic,METH_VARARGS,
    "-d[n(M)]/d[log10(M)]"},
   {NULL,NULL,0,NULL}
