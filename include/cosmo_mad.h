@@ -85,7 +85,7 @@
 
 //Mass function params
 #define CSM_DELTA_C 1.686470199841 //Collapse threshold
-#define CSM_RHOCRIT 2.7744948E11
+#define CSM_RHOCRIT 2.77536627E11
 #define CSM_ST_A 0.322
 #define CSM_ST_a 0.707
 #define CSM_ST_p 0.3
